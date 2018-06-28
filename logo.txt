@@ -1,0 +1,29 @@
+logoL.png:logo+乌镇乐点bigpay
+@400*80
+
+logoK.png:logo+肯始优kensteel
+@400*80
+
+loginL.png:logo LD
+@160*200
+
+
+loginK.png:logo K
+@160*200
+
+slideL.jpg:wzld
+@1800*700
+
+
+slideK.jpg:kensteel
+@1800*700
+
+
+slideF.jpg:fellazo
+@1800*700
+
+logoL.ico
+@128*128
+
+logoK.ico
+@128*128

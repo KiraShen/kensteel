@@ -1,0 +1,284 @@
+.marketing_advantage{
+display:none;
+}
+@media screen and (max-width: 800px) {
+.marketing_advantage{
+display:block;
+}
+}
+
+@media screen and (max-width: 700px) {
+.cloud-product-box {
+display: none;
+}
+} 
+
+.bgscroll1 {
+	background-position: 50% -100px;
+}
+.cloud-service-bgcolor  .cloud-product-title {
+	color: #fff;
+}
+.cloud-service-bgcolor  .cloud-product-explain {
+	color: #fff;
+}
+.cloud-service-bgcolor .cloud-product-title span {
+	border-bottom: 2px solid #fff;
+}
+.cloud-product-title {
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+    font-size: 28px;
+    color: #4c4c4c;
+}
+.cloud-product {
+    padding: 85px 0px 60px 0px;
+}
+.cloud-product-explain {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+}
+.cloud-service-bgcolor {
+	width: 100%;
+	height: 100%;
+	background: url("../images/index_home.jpg") no-repeat center;
+}
+.cloud-service-list {
+	margin-top: 16px;
+}
+.cloud-service-list li {
+	position: relative;
+	float: left;
+	width: 32%;
+	height: 240px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	margin-left: 1%;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.cloud-service-list li a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+.cloud-service-list li .cloud-service-sligen-from {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 240px;
+	background: #fff;
+	-o-transform: perspective(800px) rotateY(0deg);
+	-webkit-transform: perspective(800px) rotateY(0deg);
+	-ms-transform: perspective(800px) rotateY(0deg);
+	transform: perspective(800px) rotateY(0deg);
+	-o-transition: transform 500ms ease-in-out;
+	-ms-transition: transform 500ms ease-in-out;
+	-webkit-transition: transform 500ms ease-in-out;
+	transition: transform 500ms ease-in-out;
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+.cloud-service-list li .cloud-service-sligen-back {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 240px;
+	background: #009fd9;
+	-o-transition: transform 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-ms-transition: transform 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-moz-transition: transform 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-webkit-transition: transform 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	transition: transform 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-o-transform: perspective(800px) rotateY(-180deg);
+	-ms-transform: perspective(800px) rotateY(-180deg);
+	-moz-transform: perspective(800px) rotateY(-180deg);
+	-webkit-transform: perspective(800px) rotateY(-180deg);
+	transform: perspective(800px) rotateY(-180deg);
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.cloud-service-list li:nth-child(3n+1) {
+	margin-left: 0px;
+}
+.cloud-service-sligen span {
+	margin-top: 25px;
+	display: inline-block;
+	height: 90px;
+	width: 100%;
+}
+.cloud-service-bg1 {
+	background: url("../images/cloud_service1.png") no-repeat center;
+}
+.cloud-service-bg2 {
+	background: url("../images/cloud_service2.png") no-repeat center;
+}
+.cloud-service-bg3 {
+	background: url("../images/cloud_service3.png") no-repeat center;
+}
+.cloud-service-bg4 {
+	background: url("../images/cloud_service4.png") no-repeat center;
+}
+.cloud-service-bg5 {
+	background: url("../images/cloud_service5.png") no-repeat center;
+}
+.cloud-service-bg6 {
+	background: url("../images/cloud_service6.png") no-repeat center;
+}
+
+.cloud-service-list li:hover .cloud-service-sligen-back .cloud-service-bg1 {
+	background: url("../images/cloud_hover_service1.png") no-repeat center;
+}
+.cloud-service-list li:hover .cloud-service-sligen-back .cloud-service-bg2 {
+	background: url("../images/cloud_hover_service2.png") no-repeat center;
+}
+.cloud-service-list li:hover .cloud-service-sligen-back .cloud-service-bg3 {
+	background: url("../images/cloud_hover_service3.png") no-repeat center;
+}
+.cloud-service-list li:hover .cloud-service-sligen-back .cloud-service-bg4 {
+	background: url("../images/cloud_hover_service4.png") no-repeat center;
+}
+.cloud-service-list li:hover .cloud-service-sligen-back .cloud-service-bg5 {
+	background: url("../images/cloud_hover_service5.png") no-repeat center;
+}
+.cloud-service-list li:hover .cloud-service-sligen-back .cloud-service-bg6 {
+	background: url("../images/cloud_hover_service6.png") no-repeat center;
+}
+
+.cloud-service-sligen-from .cloud-service-name {
+	height: 58px;
+	line-height: 58px;
+	font-size: 16px;
+	color: #4c4c4c;
+	text-align: center;
+	-o-transform: perspective(800px) rotateY(0deg);
+	-webkit-transform: perspective(800px) rotateY(0deg);
+	-ms-transform: perspective(800px) rotateY(0deg);
+	transform: perspective(800px) rotateY(0deg);
+	-o-transition: all 500ms ease-in-out;
+	-ms-transition: all 500ms ease-in-out;
+	-webkit-transition: all 500ms ease-in-out;
+	transition: all 500ms ease-in-out;
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+.cloud-service-sligen-from .cloud-service-info {
+	margin: 0px 80px;
+	font-size: 12px;
+	color: #4c4c4c;
+	text-align: center;
+	line-height: 20px;
+	-o-transform: perspective(800px) rotateY(0deg);
+	-webkit-transform: perspective(800px) rotateY(0deg);
+	-ms-transform: perspective(800px) rotateY(0deg);
+	transform: perspective(800px) rotateY(0deg);
+	-o-transition: all 500ms ease-in-out;
+	-ms-transition: all 500ms ease-in-out;
+	-webkit-transition: all 500ms ease-in-out;
+	transition: all 500ms ease-in-out;
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+
+.cloud-service-sligen-back .cloud-service-name {
+	height: 58px;
+	line-height: 58px;
+	font-size: 16px;
+	color: #fff;
+	text-align: center;
+	-o-transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-ms-transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-moz-transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-webkit-transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-o-transform: perspective(800px) rotateY(-180deg);
+	-ms-transform: perspective(800px) rotateY(-180deg);
+	-moz-transform: perspective(800px) rotateY(-180deg);
+	-webkit-transform: perspective(800px) rotateY(-180deg);
+	transform: perspective(800px) rotateY(-180deg);
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.cloud-service-sligen-back .cloud-service-info {
+	margin: 0px 80px;
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	line-height: 20px;
+	-o-transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-ms-transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-moz-transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-webkit-transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	transition: all 500ms cubic-bezier(0.07, 0.42, 0.65, 1.3);
+	-o-transform: perspective(800px) rotateY(-180deg);
+	-ms-transform: perspective(800px) rotateY(-180deg);
+	-moz-transform: perspective(800px) rotateY(-180deg);
+	-webkit-transform: perspective(800px) rotateY(-180deg);
+	transform: perspective(800px) rotateY(-180deg);
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.cloud-service-list li:hover .cloud-service-sligen-from {
+	-o-transform: perspective(800px) rotateY(180deg);
+	-ms-transform: perspective(800px) rotateY(180deg);
+	-moz-transform: perspective(800px) rotateY(180deg);
+	-webkit-transform: perspective(800px) rotateY(180deg);
+	transform: perspective(800px) rotateY(180deg);
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.cloud-service-list li:hover .cloud-service-sligen-back{
+	-o-transform: perspective(800px) rotateY(0deg);
+	-ms-transform: perspective(800px) rotateY(0deg);
+	-moz-transform: perspective(800px) rotateY(0deg);
+	-webkit-transform: perspective(800px) rotateY(0deg);
+	transform: perspective(800px) rotateY(0deg);
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+
+.cloud-service-list li:hover .cloud-service-sligen-back .cloud-service-info {
+	margin: 0px 80px;
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	line-height: 20px;
+	-o-transform: perspective(800px) rotateY(0deg);
+	-webkit-transform: perspective(800px) rotateY(0deg);
+	-ms-transform: perspective(800px) rotateY(0deg);
+	transform: perspective(800px) rotateY(0deg);
+	-o-transition: all 500ms ease-in-out;
+	-ms-transition: all 500ms ease-in-out;
+	-webkit-transition: all 500ms ease-in-out;
+	transition: all 500ms ease-in-out;
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+
+.cloud-service-list li:hover .cloud-service-sligen-back .cloud-service-name {
+	height: 58px;
+	line-height: 58px;
+	font-size: 16px;
+	color: #fff;
+	text-align: center;
+	-o-transform: perspective(800px) rotateY(0deg);
+	-webkit-transform: perspective(800px) rotateY(0deg);
+	-ms-transform: perspective(800px) rotateY(0deg);
+	transform: perspective(800px) rotateY(0deg);
+	-o-transition: all 500ms ease-in-out;
+	-ms-transition: all 500ms ease-in-out;
+	-webkit-transition: all 500ms ease-in-out;
+	transition: all 500ms ease-in-out;
+	opacity: 1;
+	filter: alpha(opacity=100);
+}

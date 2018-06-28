@@ -1,0 +1,104 @@
+{include file="public/header"/}
+<div class="header">
+    <div class="rowFluid">
+        <div class="span2 col-md-12">
+            <div class="logo">
+                <a href="/" title="返回首页">
+                    <img src="__IMG__/logo.png" alt="深圳网站建设公司_深圳网站设计_深圳网站制作_深圳免费网站制作" /></a>
+            </div>
+        </div>
+        {include file="public/nav"/}
+        <div class="span2">
+
+            <div class="login" id="_userlogin">
+                <li class="toptel" style="margin-right:0px;">
+                    <img src="__IMG__/dongtaitel.gif">
+                    <img src="__IMG__/top-tel.png">
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="aside">
+    <ul>
+
+        <li><a href="#" target="_blank"><img src="__IMG__/057.png" alt="人工服务" />客服</a></li>
+        <li class="consulting"><a href="#" title="建站在线客服"><span></span><span></span><span></span><img src="__IMG__/059.png" class="img1" alt="建站在线客服" /><img src="__IMG__/061.png" class="img2" alt="建站在线客服" />咨询</a></li>
+        <li> <a href="help.html"><img src="__IMG__/060.png" alt="建站帮助中心" />帮助</a> </li>
+    </ul>
+</div>
+<div class="consulting_box">
+    <div class="title">
+        <div class="title_t1">RELATEED CONSULTING</div>
+        <div class="title_t2">相关咨询 </div>
+    </div>
+    <div class="consulting_type">
+        <div class="consulting_type_title">QQ通讯客服</div>
+        <ul>
+            <li> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=980218641&site=qq&menu=yes" title="响应式建站咨询"> <img src="__IMG__/062.png" class="img1" alt="网站建设" /><img src="__IMG__/063.png" class="img2" alt="响应式网站咨询" />企业QQ客服 </a> </li>
+            <li> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=980218641&site=qq&menu=yes" title="建站平台加盟咨询"> <img src="__IMG__/062.png" class="img1" alt="建站平台" /><img src="__IMG__/063.png" class="img2" alt="建站平台代理咨询" />加盟咨询 </a> </li>
+            <li> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=980218641&site=qq&menu=yes" title="响应式网站定制"> <img src="__IMG__/062.png" class="img1" alt="响应式网站定制" /><img src="__IMG__/063.png" class="img2" alt="响应式网站定制" />定制咨询 </a> </li>
+        </ul>
+        <div class="consulting_type_title">电话通讯客服</div>
+        <ul>
+            <li> <a target="_blank" href="JavaScript:;" title="响应式建站咨询"> 服务热线：40086 15257 </a> </li>
+            <li> <a target="_blank" href="JavaScript:;" title="响应式建站咨询"> 固定电话：023-81301630 </a> </li>
+            <li> <a target="_blank" href="JavaScript:;" title="响应式建站咨询"> 售前咨询：189-8340-1091 </a> </li>
+        </ul>
+
+        <div class="time">服务时间：9:30-18:00</div>
+
+    </div>
+    <div class="problem">
+        <div class="problem_title">你可能遇到了下面的问题</div>
+        <ul>
+            <li><span></span><a href="/help/seo/41.html" title="404页面该怎么做？">404页面该怎么做？</a></li>
+            <li><span></span><a href="/help/seo/40.html" title="SEO菜鸟需要掌握哪些基本SEO技巧？">SEO菜鸟需要掌握哪些基本SEO技巧？</a></li>
+            <li><span></span><a href="/help/seo/39.html" title="几大搜索引擎的网站登录入口">几大搜索引擎的网站登录入口</a></li>
+            <li><span></span><a href="/help/seo/38.html" title="手把手教你做百度推广">手把手教你做百度推广</a></li>
+            <li><span></span><a href="/help/seo/37.html" title="页面无用时间信息导致网页不被抓取">页面无用时间信息导致网页不被抓取</a></li>
+
+        </ul>
+    </div>
+    <div class="close"> <img src="__IMG__/close.png" alt="关闭右侧工具栏" /> </div>
+</div>
+<div class="page">
+    <div class="rowFluid">
+        <div class="span12">
+            <div class="main">
+                <div class="z_banner news_banner"></div>
+                <div class="technical_support">
+                    <div class="rowFluid">
+                        <div class="span12">
+                            <div class="container">
+                                <div class="wow fadeInRight">
+                                    <div class="technical_support_list" style="margin:0 auto">
+                                        <div class="technical_support_box_z">
+                                            <div class="technical_support_box_z_header">
+                                                <div class="title">{$article_info.title}</div>
+                                                <ul>
+                                                    <li>发表时间：{$article_info.create_at|date="Y-m-d H:i:s",###}</li>
+                                                   <!-- <li>来源：</li>-->
+                                                </ul>
+                                            </div>
+                                            <div class="technical_support_box_z_info_box">
+                                                <div class="technical_support_box_z_info">
+                                                    {$article_info.content}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {include file="public/footer"/}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+

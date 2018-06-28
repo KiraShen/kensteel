@@ -1,0 +1,56 @@
+<form class="layui-form layui-box" style='padding:25px 30px 20px 0' action="__SELF__" data-auto="true" method="post">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">案例名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" value='{$vo.name|default=""}' required="required" title="请输入案例名称" placeholder="请输入案例名称" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">案例分类</label>
+        <div class="layui-input-block">
+            <select name='cate_id' class='layui-select full-width' style='display:block'>
+                <!--{foreach $catelist as $cate}-->
+                <!--{eq name='cate.id' value='$vo.pid|default=0'}-->
+                <option selected  value='{$cate.id}'>{$cate.name}</option>
+                <!--{else}-->
+                <option  value='{$cate.id}'>{$cate.name}</option>
+                <!--{/eq}-->
+                <!--{/foreach}-->
+            </select>
+        </div>
+    </div>
+    <div class="form-group" data-keys-type='image'>
+        <label class="control-label layui-form-label label-required">图片地址</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" onchange="$(this).nextAll('img').attr('src', this.value);" value="{$vo.logo|default='__PUBLIC__/static/theme/default/img/image.png'}" name="logo" required="required" title="请上传图片或输入图片URL地址"/>
+            <p class="help-block">文件最大2Mb，支持png/jpeg/jpg/gif格式</p>
+            <img style="width:112px;height:auto;" data-tips-image src='{$vo.logo|default="__PUBLIC__/static/theme/default/img/image.png"}'/>
+            <a data-file="one" data-type="png,jpeg,jpg,gif" data-field="logo" class='btn btn-link'>上传图片</a>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">案例链接</label>
+        <div class="layui-input-block">
+            <input type="text" onblur="(this.value === '') && (this.value = '#')" name="url" autocomplete="off" required="required" title="请输入案例链接" placeholder="请输入案例链接" value="{$vo.url|default='#'}" class="layui-input typeahead">
+        </div>
+    </div>
+
+    <div class="form-group" id="textcontent">
+        <label class="control-label layui-form-label label-required">案例简介</label>
+        <div class="layui-input-block">
+            <textarea name="brief" maxlength="10000" class="form-control" style="height:100px">{$vo.brief|default='说点什么吧'}</textarea>
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+    </div>
+
+
+</form>

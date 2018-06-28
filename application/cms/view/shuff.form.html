@@ -1,0 +1,74 @@
+<form class="layui-form layui-box" style='padding:25px 30px 20px 0' action="__SELF__" data-auto="true" method="post">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">轮播图名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" value='{$vo.title|default=""}' required="required" title="请输入轮播图名称" placeholder="请输入轮播图名称" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">轮播图链接</label>
+        <div class="layui-input-block">
+            <input type="text" onblur="(this.value === '') && (this.value = '#')" name="url" autocomplete="off" required="required" title="请输入轮播图链接" placeholder="请输入轮播图链接" value="{$vo.url|default='#'}" class="layui-input typeahead">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">轮播类型</label>
+        <div class="layui-input-block">
+            <select name="type" class="layui-input" style="display: block;">
+                <option value="text" selected="">文本</option>
+                <option value="image">图片</option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group" id="textcontent">
+        <!--<label class="col-md-2 control-label layui-form-label label-required">文本内容</label>-->
+        <label class="control-label layui-form-label label-required">文本内容</label>
+        <div class="layui-input-block">
+            <textarea name="textcontent" maxlength="10000" class="form-control" style="height:100px">{$vo.textcontent|default='说点什么吧'}</textarea>
+        </div>
+    </div>
+    <div class="form-group" style="display: none;" id="shuff_logo">
+        <label class="control-label layui-form-label label-required">图片地址</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" onchange="$(this).nextAll('img').attr('src', this.value);" value="{$vo.image|default='__PUBLIC__/static/theme/default/img/image.png'}" name="image" required="required" title="请上传图片或输入图片URL地址"/>
+            <p class="help-block">文件最大2Mb，支持bmp/png/jpeg/jpg/gif格式</p>
+            <img style="width:112px;height:auto;" data-tips-image src='{$vo.image|default="__PUBLIC__/static/theme/default/img/image.png"}'/>
+            <a data-file="one" data-type="png,jpeg,jpg,gif" data-field="image" class='btn btn-link'>上传图片</a>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+    </div>
+
+
+</form>
+
+{block name="script"}
+<script>
+
+    $(function () {
+        $('body').off('change', 'select[name=type]').on('change', 'select[name=type]', function () {
+            var val=$(this).val();
+            switch (val){
+                case 'text':
+                    $("#textcontent").show();
+                    $("#shuff_logo").hide();
+                    break;
+                case 'image':
+                    $("#textcontent").hide();
+                    $("#shuff_logo").show();
+                    break;
+            }
+        });
+    })
+</script>
+{/block}

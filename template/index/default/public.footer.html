@@ -1,0 +1,39 @@
+
+<footer class="footer ">
+	
+<ul>
+        
+        <li class="am-u-lg-4 am-u-md-4 am-u-sm-12 part-5-li2">
+            <div class="part-5-title">联系我们</div>
+            <div class="part-5-words2">
+                <span>地址:{:sysconf('company_address')}</span>
+                <span>电话:{:sysconf('company_phone')}</span>
+                <span>传真:{:sysconf('company_fixed_line')}</span>
+                <span>邮箱:{:sysconf('company_email')}</span>
+                <span><i class="am-icon-phone"></i><em >{:sysconf('company_fixed_line')}</em></span>
+            </div>
+        </li>
+        <li class="am-u-lg-4 am-u-md-4 am-u-sm-12 ">
+            <div class="part-5-title">友情链接</div>
+            <div class="part-5-words2">
+                <ul class="part-5-words2-ul">
+                    {volist name="link_list" id="item"}
+                    <li class="am-u-lg-4 am-u-md-6 am-u-sm-4"><a href='{$item.url}' title='{$item.title}' target='_blank'>{$item.title}</a> </li>
+                    {/volist}
+                
+                    <div class="clear"></div>
+                </ul>
+            </div>
+        </li>
+        <div class="clear"></div>
+    </ul>
+   <div class="copyright">
+        Copyright &#169; 2017-2020 
+        <a href="{:sysconf('company_url')}" title=" " target="_blank">{:sysconf('company_url')}</a> 
+        <a href="{:sysconf('company_url')}" title=" " {:sysconf('company_url')}" alt="" target="_blank"></a> 版权所有  
+        <a href="{:sysconf('company_url')}" target="_blank" title="{:sysconf('seo_title')}">{:sysconf('web_site_icp')}</a> 
+    </div>
+</footer>
+</body>
+
+</html>

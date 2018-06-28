@@ -1,0 +1,295 @@
+{include file="public/header"/}
+<div class="header">
+    <div class="rowFluid">
+        <div class="span2 col-md-12">
+            <div class="logo">
+                <a href="/" title="返回首页">
+                    <img src="__IMG__/logo.png" alt="深圳网站建设公司_深圳网站设计_深圳网站制作_深圳免费网站制作" /></a>
+            </div>
+        </div>
+        {include file="public/nav"/}
+        <div class="span2">
+
+            <div class="login" id="_userlogin">
+                <li class="toptel" style="margin-right:0px;">
+                    <img src="__IMG__/dongtaitel.gif">
+                    <img src="__IMG__/top-tel.png">
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="aside">
+    <ul>
+
+        <li><a href="#" target="_blank"><img src="__IMG__/057.png" alt="人工服务" />客服</a></li>
+        <li class="consulting"><a href="#" title="建站在线客服"><span></span><span></span><span></span><img src="__IMG__/059.png" class="img1" alt="建站在线客服" /><img src="__IMG__/061.png" class="img2" alt="建站在线客服" />咨询</a></li>
+        <li> <a href="help.html"><img src="__IMG__/060.png" alt="建站帮助中心" />帮助</a> </li>
+    </ul>
+</div>
+<div class="consulting_box">
+    <div class="title">
+        <div class="title_t1">RELATEED CONSULTING</div>
+        <div class="title_t2">相关咨询 </div>
+    </div>
+    <div class="consulting_type">
+        <div class="consulting_type_title">QQ通讯客服</div>
+        <ul>
+            <li> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=980218641&site=qq&menu=yes" title="响应式建站咨询"> <img src="__IMG__/062.png" class="img1" alt="网站建设" /><img src="__IMG__/063.png" class="img2" alt="响应式网站咨询" />企业QQ客服 </a> </li>
+            <li> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=980218641&site=qq&menu=yes" title="建站平台加盟咨询"> <img src="__IMG__/062.png" class="img1" alt="建站平台" /><img src="__IMG__/063.png" class="img2" alt="建站平台代理咨询" />加盟咨询 </a> </li>
+            <li> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=980218641&site=qq&menu=yes" title="响应式网站定制"> <img src="__IMG__/062.png" class="img1" alt="响应式网站定制" /><img src="__IMG__/063.png" class="img2" alt="响应式网站定制" />定制咨询 </a> </li>
+        </ul>
+        <div class="consulting_type_title">电话通讯客服</div>
+        <ul>
+            <li> <a target="_blank" href="JavaScript:;" title="响应式建站咨询"> 服务热线：40086 15257 </a> </li>
+            <li> <a target="_blank" href="JavaScript:;" title="响应式建站咨询"> 固定电话：023-81301630 </a> </li>
+            <li> <a target="_blank" href="JavaScript:;" title="响应式建站咨询"> 售前咨询：189-8340-1091 </a> </li>
+        </ul>
+
+        <div class="time">服务时间：9:30-18:00</div>
+
+    </div>
+    <div class="problem">
+        <div class="problem_title">你可能遇到了下面的问题</div>
+        <ul>
+            <li><span></span><a href="/help/seo/41.html" title="404页面该怎么做？">404页面该怎么做？</a></li>
+            <li><span></span><a href="/help/seo/40.html" title="SEO菜鸟需要掌握哪些基本SEO技巧？">SEO菜鸟需要掌握哪些基本SEO技巧？</a></li>
+            <li><span></span><a href="/help/seo/39.html" title="几大搜索引擎的网站登录入口">几大搜索引擎的网站登录入口</a></li>
+            <li><span></span><a href="/help/seo/38.html" title="手把手教你做百度推广">手把手教你做百度推广</a></li>
+            <li><span></span><a href="/help/seo/37.html" title="页面无用时间信息导致网页不被抓取">页面无用时间信息导致网页不被抓取</a></li>
+
+        </ul>
+    </div>
+    <div class="close"> <img src="__IMG__/close.png" alt="关闭右侧工具栏" /> </div>
+</div>
+
+<div class="page">
+    <div class="rowFluid">
+        <div class="span12">
+            <div class="main">
+                <div class="z_banner support_z_banner">
+                    <div class="rowFluid">
+                        <div class="span12">
+                            <div class="container">
+                                <h3 class="z_banner_title">新闻中心</h3>
+                                <div class="z_banner_text"> 这里有您想知道的最新资讯与动态 </div>
+                            </div>
+                            <ul class="platform_advantage_bg_z">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="support_type">
+                    <div class="rowFluid">
+                        <div class="span12">
+                            <div class="container">
+                                <div class="support_type_content">
+                                    <div class="kzf-mod-center">
+                                        {volist name="article_cate" id="item"}
+                                        <div class="span2 col-xs-4"> <a href="{$item.url}" class="support_type_list normal {if $type eq $item.id} active{/if}" title="平台动态">{$item.name}</a> </div>
+                                        {/volist}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kzf-mod-new-container">
+                    <div class="rowFluid">
+                        <div class="span12">
+                            <div class="container" id="newslist">
+                                {volist name="article_list" id="item"}
+                                <div class="rowFluid">
+                                    <a href="{$item.url}">
+                                        <div class="kzf-mod-new-li">
+                                            <div class="span2">
+                                                <div class="kzf-mod-new-time-box">
+                                                    <div class="kzf-mod-new-time-date"><span>{$item.create_at|date="m",###}</span>/<span>{$item.create_at|date="d",###}</span></div>
+                                                    <div class="kzf-mod-new-time-year">{$item.create_at|date="Y",###}</div>
+                                                </div>
+                                            </div>
+                                            <div class="span10">
+                                                <div class="kzf-mod-new-box">
+                                                    <div class="kzf-mod-new-title">{$item.title}</div>
+                                                    <div class="kzf-mod-new-text"> {$item.brief}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {/volist}
+                               <!-- <div class="rowFluid">
+                                    <a href="newsdetail.html">
+                                        <div class="kzf-mod-new-li">
+                                            <div class="span2">
+                                                <div class="kzf-mod-new-time-box">
+                                                    <div class="kzf-mod-new-time-date"><span>03</span>/<span>24</span></div>
+                                                    <div class="kzf-mod-new-time-year">2017</div>
+                                                </div>
+                                            </div>
+                                            <div class="span10">
+                                                <div class="kzf-mod-new-box">
+                                                    <div class="kzf-mod-new-title">设计一个好的新闻类内容详情页，不得不注意的三大方面</div>
+                                                    <div class="kzf-mod-new-text"> 只有站在受众角度，将个性化、精选的内容送达用户，精准匹配、促进互动，进而形成自有势能。</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="rowFluid"> <a href="newsdetail.html">
+                                <div class="kzf-mod-new-li">
+                                    <div class="span2">
+                                        <div class="kzf-mod-new-time-box">
+                                            <div class="kzf-mod-new-time-date"><span>03</span>/<span>24</span></div>
+                                            <div class="kzf-mod-new-time-year">2017</div>
+                                        </div>
+                                    </div>
+                                    <div class="span10">
+                                        <div class="kzf-mod-new-box">
+                                            <div class="kzf-mod-new-title">Struts 2 再曝高危漏洞，请立即升级，这不是演习！</div>
+                                            <div class="kzf-mod-new-text"> 此时此刻，很多网络安全人员、IT 运维人员的内心是崩溃的。</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div><div class="rowFluid"> <a href="newsdetail.html">
+                                <div class="kzf-mod-new-li">
+                                    <div class="span2">
+                                        <div class="kzf-mod-new-time-box">
+                                            <div class="kzf-mod-new-time-date"><span>03</span>/<span>24</span></div>
+                                            <div class="kzf-mod-new-time-year">2017</div>
+                                        </div>
+                                    </div>
+                                    <div class="span10">
+                                        <div class="kzf-mod-new-box">
+                                            <div class="kzf-mod-new-title">妻子遭黑客勒索却安然无恙，当事人亲述如何防止勒索软件</div>
+                                            <div class="kzf-mod-new-text"> CryptoLocker勒索软件可以劫持用户的网络摄像头，并录下一些不可描述的画面。</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div><div class="rowFluid"> <a href="newsdetail.html">
+                                <div class="kzf-mod-new-li">
+                                    <div class="span2">
+                                        <div class="kzf-mod-new-time-box">
+                                            <div class="kzf-mod-new-time-date"><span>03</span>/<span>24</span></div>
+                                            <div class="kzf-mod-new-time-year">2017</div>
+                                        </div>
+                                    </div>
+                                    <div class="span10">
+                                        <div class="kzf-mod-new-box">
+                                            <div class="kzf-mod-new-title">碎片化学习VS系统化学习：如何系统地学习新媒体知识？</div>
+                                            <div class="kzf-mod-new-text"> 最全的新媒体知识大纲。 ,鸟哥笔记</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div><div class="rowFluid"> <a href="newsdetail.html">
+                                <div class="kzf-mod-new-li">
+                                    <div class="span2">
+                                        <div class="kzf-mod-new-time-box">
+                                            <div class="kzf-mod-new-time-date"><span>03</span>/<span>24</span></div>
+                                            <div class="kzf-mod-new-time-year">2017</div>
+                                        </div>
+                                    </div>
+                                    <div class="span10">
+                                        <div class="kzf-mod-new-box">
+                                            <div class="kzf-mod-new-title">百度取消了新闻源？！VIP俱乐部申请升级</div>
+                                            <div class="kzf-mod-new-text"> 近日，百度发布公告称，原独立新闻源数据库的形式已经不再适用，因而取消了新闻源数据库……</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div><div class="rowFluid"> <a href="newsdetail.html">
+                                <div class="kzf-mod-new-li">
+                                    <div class="span2">
+                                        <div class="kzf-mod-new-time-box">
+                                            <div class="kzf-mod-new-time-date"><span>03</span>/<span>24</span></div>
+                                            <div class="kzf-mod-new-time-year">2017</div>
+                                        </div>
+                                    </div>
+                                    <div class="span10">
+                                        <div class="kzf-mod-new-box">
+                                            <div class="kzf-mod-new-title">黑产马仔躲山里柴油机发电搞攻击，幕后老大闹市喝茶——老司机独</div>
+                                            <div class="kzf-mod-new-text"> 时刻警惕与抵抗赛博世界的攻方来袭，揪出背后的始作俑者，这是绿盟科技的高级副总裁叶晓虎置身攻防战斗 15 年来最重要的工作。</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div><div class="rowFluid"> <a href="newsdetail.html">
+                                <div class="kzf-mod-new-li">
+                                    <div class="span2">
+                                        <div class="kzf-mod-new-time-box">
+                                            <div class="kzf-mod-new-time-date"><span>03</span>/<span>24</span></div>
+                                            <div class="kzf-mod-new-time-year">2017</div>
+                                        </div>
+                                    </div>
+                                    <div class="span10">
+                                        <div class="kzf-mod-new-box">
+                                            <div class="kzf-mod-new-title">离奇电信诈骗：一夜损失 52000元，毒品、情妇、黑客交织的犯罪网</div>
+                                            <div class="kzf-mod-new-text"> 手机、银行卡都在身边，他却一夜之间被盗 52000元！这不是故事，这是真实发生的事情……</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div><div class="rowFluid"> <a href="newsdetail.html">
+                                <div class="kzf-mod-new-li">
+                                    <div class="span2">
+                                        <div class="kzf-mod-new-time-box">
+                                            <div class="kzf-mod-new-time-date"><span>03</span>/<span>24</span></div>
+                                            <div class="kzf-mod-new-time-year">2017</div>
+                                        </div>
+                                    </div>
+                                    <div class="span10">
+                                        <div class="kzf-mod-new-box">
+                                            <div class="kzf-mod-new-title">新媒体编辑一定要知道的55个常用术语</div>
+                                            <div class="kzf-mod-new-text"> 55个有关新媒体编辑的高级机密送给你们 ,鸟哥笔记</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div> </div>-->
+                            <div style="text-align: center;" id="pages">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="__PUBLIC__/static/plugs/layui/css/layui.css?ver={:date('ymd')}"/>
+<script src="__PUBLIC__/static/plugs/layui/layui.js?ver={:date('ymd')}"></script>
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage,layer = layui.layer;
+        laypage({
+            cont: 'pages',
+            skin: '#AF0000',
+            skip: true, //是否开启跳页
+            pages: {$allpage}, //可以叫服务端把总页数放在某一个隐藏域，再获取。假设我们获取到的是18
+            curr: function(){ //通过url获取当前页，也可以同上（pages）方式获取
+                var page = location.search.match(/page=(\d+)/);
+                return page ? page[1] : 1;
+            }(),
+            jump: function(e, first){ //触发分页后的回调
+                if(!first){ //一定要加此判断，否则初始时会无限刷新
+                    location.href = '?page='+e.curr;
+                }
+            }
+        });
+    });
+</script>
+    {include file="public/footer"/}
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,120 @@
+{include file="public/header"}
+{include file="public/nav"}
+{include file="public/mobileheader"}
+    <!--===========layout-container================-->
+  <!--   <div class="layout-container">
+      <div class="page-header">
+        <div class="am-container">
+          <h1 class="page-header-title">Contact Us</h1>
+        </div>
+      </div>
+
+      <div class="breadcrumb-box">
+        <div class="am-container">
+          <ol class="am-breadcrumb">
+            <li><a href="../index.html">首页</a></li>
+            <li class="am-active">联系我们</li>
+          </ol>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="section">
+      <div class="container">
+        <div class="section--header" style="margin: -50px">
+					<h2 class="section--title">沸达州加盟 FELLAZO FRANCHISEE</h2>
+					<!-- <p class="section--description">
+            云适配致力于为企业提供全球最先进的移动化技术帮助企业最高效安全实现生产力提升<br/>
+              One Web，Any Device
+					</p> -->
+				</div>
+
+        <div class="section-container">
+          <div class="am-g">
+           
+
+            <!--contact-right start-->
+              <div class="am-u-md-12">
+                <div class="contact-form">
+                  <!-- <h3 class="contact-form_title">请写下你的加盟信息：</h3> -->
+                  <form action="http://127.0.0.1/info_post" class="am-form" id="doc-vld-msg" method="POST">
+                    <fieldset>
+                    <legend>请写下你的加盟信息：</legend>
+                    <div class="am-g">
+                      <div class="am-u-md-3">
+                        <div class="am-form-group" style="background: #fcfcfc;">
+                          <select id="doc-select-1" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;" required name="tid">
+
+                            {volist name="type_list" id="type" }
+                                <option value="{$type.id}">{$type.type_name}</option>
+                            {/volist}
+                          </select>
+                          <span class="am-form-caret"></span>
+                        </div>
+                      </div>
+                      <div class="am-u-md-3">
+                        <input type="text" class="" id="doc-ipt-last" placeholder="姓" name="last_name" required >
+                      </div>
+                      <div class="am-u-md-3">
+                        <input type="text" class="" id="doc-ipt-first" placeholder="名" name="first_name" required>
+                      </div>
+                      <div class="am-u-md-3">
+                        <input type="text" class="" id="doc-ipt-phone" placeholder="手机号" name="phone" pattern="^1[0-9]{10}$" required>
+                      </div>
+                    </div>
+
+                    <div class="am-g">
+                      <div class="am-u-md-6">
+                        <input type="text" class="" id="doc-ipt-identy" placeholder="身份证号" name="code" pattern="^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$" required >
+                      </div>
+                      <div class="am-u-md-6">
+                        <input type="text" class="" id="doc-ipt-address" placeholder="身份证地址" name="address" required>
+                      </div>
+                    </div>
+                    
+                    <div class="am-g">
+                      <div class="am-u-md-6">
+                        <input type="number" class="" id="doc-ipt-banknum" placeholder="开户银行账户" name="banknum" required>
+                      </div>
+                      <div class="am-u-md-6">
+                        <input type="text" class="" id="doc-ipt-bankinfo" placeholder="开户银行信息" name="bankinfo" required>
+                      </div>
+                    </div>
+
+                    
+
+                    <!-- <div class=am-g>
+                      <div class="am-u-md-12">
+                        <div class="am-form-group">
+                          <textarea class="" rows="5" id="doc-ta-1" placeholder="写下你想说的..."></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="am-g">
+                      <div class="am-u-md-9">
+                        <div class="am-form-group am-form-file">
+                          <button type="button" class="am-btn am-btn-default am-btn-sm btn-change">
+                            <i class="am-icon-cloud-upload"></i> 上传文件</button>
+                          <input type="file" multiple>
+                        </div>
+                      </div>
+                      <div class="am-u-md-3">
+                        <p><button type="submit" class="am-btn am-btn-default btn-reguest am-fr btn-fl">提交</button></p>
+                      </div>
+                    </div> -->
+
+                      <div class="am-u-md-12">
+                        <p><button type="submit" class="am-btn am-btn-default btn-reguest am-fr btn-fl">提交</button></p>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
+            <!--contact-right end-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{include file="public/footer"}

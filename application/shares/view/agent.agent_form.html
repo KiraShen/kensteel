@@ -1,0 +1,56 @@
+<form class="layui-form layui-box" style='padding:25px 30px 20px 0' action="__SELF__" data-auto="true" method="post">
+
+    
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">代理区域(例如:浙江杭州)</label>
+        <div class="layui-input-block">
+            <input type="text" name="area" value='{$vo.area|default=""}' required="required" title="代理区域" placeholder="代理区域" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">代理名称(子公司名称)</label>
+        <div class="layui-input-block">
+            <input type="text" name="agent_name" value='{$vo.agent_name|default=""}' required="required" title="代理名称" placeholder="代理名称" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+     <label class="layui-form-label">法人姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="person" value='{$vo.person|default=""}' required="required" title="法人姓名" placeholder="法人姓名" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">法人手机</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone" value='{$vo.phone|default=""}' required="number" title="法人手机" placeholder="法人手机" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">代理用户名(例如:'浙江沸达州'->'zjfdz')</label>
+        <div class="layui-input-block">
+            <input type="text" name="agentname" value='{$vo.agentname|default=""}' required="required" title="代理用户名" placeholder="代理用户名" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">密码(请设置为法人手机后六位)</label>
+        <div class="layui-input-block">
+            <input type="text" name="password" value='{$vo.password|default=""}' required="required" title="密码" placeholder="密码" class="layui-input">
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+    </div>
+
+
+</form>
