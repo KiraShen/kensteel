@@ -34,6 +34,11 @@ class ComposerStaticInit59af68441ce8f025170b30378685dd2f
         array (
             'Qiniu\\' => 6,
         ),
+        'P' => 
+        array (
+            'Psr\\SimpleCache\\' => 16,
+            'PhpOffice\\PhpSpreadsheet\\' => 25,
+        ),
         'O' => 
         array (
             'OSS\\' => 4,
@@ -77,6 +82,14 @@ class ComposerStaticInit59af68441ce8f025170b30378685dd2f
         'Qiniu\\' => 
         array (
             0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
+        ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
+        'PhpOffice\\PhpSpreadsheet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
         ),
         'OSS\\' => 
         array (

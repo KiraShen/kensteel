@@ -15,6 +15,9 @@ use think\Db;
 use PHPExcel_IOFactory;
 use PHPExcel_Cell;
 use PHPExcel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Shares extends BasicAdmin
 {
     public $shares_table = 'cms_shares';
@@ -67,8 +70,57 @@ class Shares extends BasicAdmin
         return $this->fetch();
     }
 
-
     public function out(){
+        $spreadsheet = new Spreadsheet();
+        $worksheet = $spreadsheet->getActiveSheet();
+        $worksheet->setTitle('学生成绩表');
+        //表头
+        //设置单元格内容
+        $worksheet->setCellValueByColumnAndRow(1, 1, '学生成绩表');
+        $worksheet->setCellValueByColumnAndRow(1, 2, '姓名');
+        $worksheet->setCellValueByColumnAndRow(2, 2, '语文');
+        $worksheet->setCellValueByColumnAndRow(3, 2, '数学');
+        $worksheet->setCellValueByColumnAndRow(4, 2, '外语');
+        $worksheet->setCellValueByColumnAndRow(5, 2, '总分');
+
+        $stmt=Db::name($this->shares_table)
+                    ->alias('shares')
+                    ->join(['cms_user'=>'user'],'shares.pid=user.id')
+                    ->join(['cms_shares_cate'=>'type'],'shares.tid=type.id')
+                    ->join(['cms_agent'=>'agent'],'shares.aid=agent.id')
+                    ->field('shares.*,
+                        user.first_name,user.last_name,user.phone,
+                        user.bankinfo,user.banknum,user.code,user.address,
+                        type.type_name,type.shares,type.money,
+                        agent.agent_name,agent.person')
+                    // ->field(date('Y-m-d','create_at'))
+                    ->order('create_at desc')
+                    ->where("shares.remark <> ''")->where('shares.status',1)->select();
+
+        // $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $len = count($stmt);
+        $i=2;  //定义一个i变量，目的是在循环输出数据是控制行数
+        
+        $j = 0;
+        for ($i=0; $i < $len; $i++) { 
+            $j = $i + 3;
+            $worksheet->setCellValueByColumnAndRow(1, $j, $stmt[$i]['first_name']);
+            $worksheet->setCellValueByColumnAndRow(2, $j, $stmt[$i]['last_name']);
+            $worksheet->setCellValueByColumnAndRow(3, $j, $stmt[$i]['code']);
+            $worksheet->setCellValueByColumnAndRow(4, $j, $stmt[$i]['shares']);
+            $worksheet->setCellValueByColumnAndRow(5, $j, $stmt[$i]['money'] );
+        }
+        // 下载
+        $filename = '成绩表.xlsx';
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0');
+
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+        $writer->save('php://output');
+
+    }
+    public function outs(){
         
         $get = $this->request->get();
         //导出

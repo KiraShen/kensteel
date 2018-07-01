@@ -121,7 +121,7 @@ class Info extends BasicAdmin
         vendor("PHPExcel.PHPExcel.IOFactory");
         $objPHPExcel = new \PHPExcel();
         $objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
-        $objWriter = new \PHPExcel_Writer_Excel2007($objPHPExcel);
+        // $objWriter = new \PHPExcel_Writer_Excel2007($objPHPExcel);
 
 
         // 实例化完了之后就先把数据库里面的数据查出来
@@ -152,13 +152,16 @@ class Info extends BasicAdmin
 
         $objPHPExcel->getActiveSheet()->setTitle('sheet');      //设置sheet的名称
         $objPHPExcel->setActiveSheetIndex(0);                   //设置sheet的起始位置
-        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');   //通过PHPExcel_IOFactory的写函数将上面数据写出来
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');   
+        //通过PHPExcel_IOFactory的写函数将上面数据写出来
         
         $PHPWriter = \PHPExcel_IOFactory::createWriter( $objPHPExcel,"Excel2007");
             
         header('Content-Disposition: attachment;filename="type.xlsx"');
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         
+        // header('Content-Type: application/vnd.ms-excel');//告诉浏览器将要输出excel03文件
+        // header('Cache-Control: max-age=0');//禁止缓存
         $PHPWriter->save("php://output"); //表示在$path路径下面生成demo.xlsx文件
 
     }
