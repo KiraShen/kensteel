@@ -6,7 +6,7 @@
  * Time: 17:30
  */
 
-namespace app\shares\controller;
+namespace app\kshares\controller;
 
 
 use controller\BasicAdmin;
@@ -41,7 +41,7 @@ class Account extends BasicAdmin
                         agent.agent_name,agent.person')
                     ->order('create_at desc')
                     ->where('shares.status=2')
-                    ->where('shares.mode=1')
+                    ->where('shares.mode=2')
                     ->where('shares.remark','')
                     ->paginate(10);
         // $page = $shares_list->render();

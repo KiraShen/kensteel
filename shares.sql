@@ -13,8 +13,15 @@ CREATE TABLE `cms_shares` (
   `update_time` datetime DEFAULT NULL,
   `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
   `infomark` varchar(255) NOT NULL DEFAULT '' COMMENT '信息记录',
+  `mode` tinyint(4) DEFAULT '0' COMMENT '0:无模式,1:乐点,2:肯始优',
+  `uuid` varchar(16) NOT NULL DEFAULT '' COMMENT 'uuid',
   `more` text COMMENT '扩展属性',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='股票表';
 
 
+update cms_shares set mode=1 where id>0
+
+alter table cms_shares add `uuid` varchar(16) NOT NULL DEFAULT '' COMMENT 'uuid',--需要倒入uuid
+
+alter table cms_shares add `mode` tinyint(4) DEFAULT '0' COMMENT '0:无模式,1:乐点,2:肯始优'

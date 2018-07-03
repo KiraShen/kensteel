@@ -14,7 +14,29 @@
 {/block}
 
 {block name="content"}
+<!-- 表单搜索 开始 -->
+<form class="animated form-search" action="__SELF__" onsubmit="return false" method="get">
 
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="form-group">
+                <input type="text" name="first_name" value="{$Think.get.first_name|default=''}" placeholder="名字(不要输入姓)" class="input-sm form-control">
+            </div>
+        </div>
+
+        <div class="col-xs-3">
+            <div class="form-group">
+                <input type="text" name="code" value="{$Think.get.code|default=''}" placeholder="身份证" class="input-sm form-control">
+            </div>
+        </div>
+
+        <div class="col-xs-1">
+            <div class="form-group">
+                <button type="submit" class="btn btn-sm btn-white"><i class="fa fa-search"></i> 搜索</button>
+            </div>
+        </div>
+    </div>
+</form>
 <form onsubmit="return false;" data-auto="" method="POST">
     <input type="hidden" value="resort" name="action"/>
     <table class="table table-hover">
@@ -24,10 +46,10 @@
                 <input data-none-auto="" data-check-target='.list-check-box' type='checkbox'/>
             </th>
             <th>id</th>
-            <th>姓</th>
-            <th>名</th>
+            <th>姓名</th>
             <th>手机</th>
             <th>身份证</th>
+            <th>银行号码</th>
             <th class='text-center'>状态</th>
             <th class='text-center'>操作</th>
         </tr>
@@ -39,10 +61,10 @@
                 <input class="list-check-box" value='{$vo.id}' type='checkbox'/>
             </td>
             <td>{$vo.id}</td>
-            <td>{$vo.last_name|default=""}</td>
-            <td>{$vo.first_name|default=""}</td>
+            <td>{$vo.last_name|default=""}{$vo.first_name|default=""}</td>
             <td>{$vo.phone|default=""}</td>
             <td>{$vo.code|default=""}</td>
+            <td>{$vo.banknum|default=""}</td>
             <td class='text-center'>
                 {if $vo.status eq 0}
                 <span>已禁用</span>
@@ -56,11 +78,11 @@
                 <a data-modal='{:url("$classuri/edit_user")}?id={$vo.id}' href="javascript:void(0)">编辑</a>
                 {/if}
 
-                {if auth("$classuri/del_cate")}<!-- 
+                <!-- {if auth("$classuri/del_cate")}
                 <span class="text-explode">|</span>
                 <a data-update="{$vo.id}" data-field='del' data-action='{:url("$classuri/del_cate")}'
-                   href="javascript:void(0)">删除</a> -->
-                {/if}
+                   href="javascript:void(0)">删除</a> 
+                {/if}-->
             </td>
         </tr>
         {/foreach}

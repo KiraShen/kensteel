@@ -1,0 +1,92 @@
+<form class="layui-form layui-box" style='padding:25px 40px 20px 0' action="__SELF__" data-auto="true" method="">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">代理名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="agent_name" value='{$vo.agent_name|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">分类</label>
+        <div class="layui-input-block">
+            <input type="text" name="type_name" value='{$vo.type_name|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="first_name" value='{$vo.last_name|default=""}{$vo.first_name|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+        <div class="layui-form-item">
+     <label class="layui-form-label">套餐金额</label>
+        <div class="layui-input-block">
+            <input type="text" name="money" value='{$vo.money|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">股票数量</label>
+        <div class="layui-input-block">
+            <input type="text" name="shares" value='{$vo.shares|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证</label>
+        <div class="layui-input-block">
+            <input type="text" name="code" value='{$vo.code|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">地址</label>
+        <div class="layui-input-block">
+            <input type="text" name="address" value='{$vo.address|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">银行信息</label>
+        <div class="layui-input-block">
+            <input type="text" name="bankinfo" value='{$vo.bankinfo|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">银行号码</label>
+        <div class="layui-input-block">
+            <input type="text" name="banknum" value='{$vo.banknum|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">汇款流水</label>
+        <div class="layui-input-block">
+            <input type="text" name="remark" value='{$vo.remark|default=""}' required="required" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="display: none;">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">  
+            <input type="text" name="status" value='{$vo.status|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="display: none;">
+        <label class="layui-form-label">信息记录</label>
+        <div class="layui-input-block">  
+            <input type="text" name="infomark" value='{$vo.infomark|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <button class="layui-btn" type='submit'>确认信息验证</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消吗？" data-close>取消</button>
+    </div>
+
+
+</form>

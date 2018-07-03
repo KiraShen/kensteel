@@ -6,7 +6,7 @@
  * Time: 16:32
  */
 
-namespace app\shares\controller;
+namespace app\kshares\controller;
 
 
 use controller\BasicAdmin;
@@ -43,7 +43,7 @@ class Info extends BasicAdmin
                     ->order('create_at desc')
                     ->where("shares.remark <> ''")
                     ->where('shares.status',2)
-                    ->where('shares.mode',1)
+                    ->where('shares.mode',2)
                     ->paginate(10);
         // $page = $shares_list->render();
         $page = preg_replace(['|href="(.*?)"|', '|pagination|'], ['data-open="$1" href="javascript:void(0);"', 'pagination pull-right'], $shares_list->render());
@@ -105,7 +105,7 @@ class Info extends BasicAdmin
         // 获取到所有GET参数
         $get = $this->request->get();
         // 实例Query对象
-        $db = Db::name($this->table)->where('mode',1);
+        $db = Db::name($this->table)->where('mode',2);
         // 实例化并显示
         return parent::_list($db);
     }
@@ -155,7 +155,7 @@ class Info extends BasicAdmin
 
 
         // 实例化完了之后就先把数据库里面的数据查出来
-        $sql = Db::name('cms_shares_cate')->where('mode',1)->where('status',1)->select();
+        $sql = Db::name('cms_shares_cate')->where('mode',2)->where('status',1)->select();
         // var_dump($sql);
 
         // 设置表头信息

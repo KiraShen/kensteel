@@ -9,6 +9,7 @@ CREATE TABLE `cms_shares_cate` (
   `create_at` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_at` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(4) DEFAULT '1',
+  `mode` tinyint(4) DEFAULT '0' COMMENT '0:无模式,1:乐点,2:肯始优',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='套餐类型表';
 
@@ -19,3 +20,7 @@ INSERT INTO `cms_shares_cate` VALUES ('1','0', '沸达州套餐内购6w', '60000
 INSERT INTO `cms_shares_cate` VALUES ('2','0', '沸达州套餐内购12w', '120000.00', '16888','1527782400','1');
 INSERT INTO `cms_shares_cate` VALUES ('3','0', '沸达州套餐内购18w', '180000.00', '28888','1527782400','1');
 
+--------
+alter table cms_shares_cate add `mode` tinyint(4) DEFAULT '0' COMMENT '0:无模式,1:乐点,2:肯始优'
+
+update cms_shares_cate set mode=1 where id>0

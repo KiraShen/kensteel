@@ -6,7 +6,7 @@
  * Time: 17:30
  */
 
-namespace app\shares\controller;
+namespace app\kshares\controller;
 
 
 use controller\BasicAdmin;
@@ -50,7 +50,7 @@ class Shares extends BasicAdmin
                     ->order('create_at desc')
                     ->where("shares.remark <> ''")
                     ->where('shares.status',1)
-                    ->where('shares.mode',1);
+                    ->where('shares.mode',2);
         // $page = $shares_list->render();
         foreach (['first_name', 'agent_name','update_time'] as $key) {
             if (isset($get[$key]) && $get[$key] !== '') {
@@ -101,7 +101,7 @@ class Shares extends BasicAdmin
                     ->order('create_at desc')
                     ->where("shares.remark <> ''")
                     ->where('shares.status',1)
-                    ->where('shares.mode',1)
+                    ->where('shares.mode',2)
                     ->select();
 
         // $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -166,7 +166,7 @@ class Shares extends BasicAdmin
                     ->order('create_at desc')
                     ->where("shares.remark <> ''")
                     ->where('shares.status',1)
-                    ->where('shares.mode',1)
+                    ->where('shares.mode',2)
                     ->select();
         // $sql = $this->out_list;
         // var_dump($sql);exit();

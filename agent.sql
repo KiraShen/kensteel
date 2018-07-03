@@ -21,7 +21,12 @@ CREATE TABLE `cms_agent` (
   `more` text COMMENT '扩展属性',
   `login_num` bigint(20) unsigned DEFAULT '0' COMMENT '登录次数',
   `login_at` datetime DEFAULT NULL COMMENT '登录时间',
+  `mode` tinyint(4) DEFAULT '0' COMMENT '0:无模式,1:乐点,2:肯始优',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='代理公司表';
 
+---------------
+alter table cms_agent add `mode` tinyint(4) DEFAULT '0' COMMENT '0:无模式,1:乐点,2:肯始优'
 
+
+update cms_agent set mode=1 where id>0

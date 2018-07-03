@@ -2016,7 +2016,8 @@ ALTER TABLE `cms_type`
 --
 ALTER TABLE `cms_user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `code` (`code`);
+  ADD UNIQUE KEY `code` (`code`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `system_auth`

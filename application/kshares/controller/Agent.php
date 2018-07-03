@@ -6,7 +6,7 @@
  * Time: 17:30
  */
 
-namespace app\shares\controller;
+namespace app\kshares\controller;
 
 
 use controller\BasicAdmin;
@@ -25,9 +25,9 @@ class Agent extends BasicAdmin
         $this->title = '代理信息表';
         // 获取到所有GET参数
         $get = $this->request->get();
-
+        
         // 实例Query对象
-        $db = Db::name($this->agent_table)->where('mode',1);
+        $db = Db::name($this->agent_table)->where('mode',2);
 
         foreach ([ 'agent_name','person'] as $key) {
             if (isset($get[$key]) && $get[$key] !== '') {
