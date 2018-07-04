@@ -6,7 +6,7 @@
 <table class="am-table  am-table-bordered">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>No.</th>
             <th>姓名</th>
             <!-- <th>手机号</th> -->
             <th>身份证</th>
@@ -20,7 +20,7 @@
     <tbody>
     	{foreach $shares_list as $key=>$vo}
         <tr>
-        	<td>{$vo.id}</td>
+        	<td>{$key+1}</td>
             <td>{$vo.last_name}{$vo.first_name}</td>
         	<!-- <td>{$vo.phone}</td> -->
         	<td>{$vo.code}</td>
@@ -37,7 +37,17 @@
         </tr>
         {/foreach}
     </tbody>
+
 </table>
+
+<style>
+.pagination{text-align:center;margin-top:20px;margin-bottom: 20px;}  
+.pagination li{margin:0px 10px; border:1px solid #e6e6e6;padding: 3px 8px;display: inline-block;}  
+.pagination .active{background-color: #46A3FF;color: #fff;}  
+.pagination .disabled{color:#aaa;} 
+</style>
+
+{if isset($page)}<p>{$page}</p>{/if}
 
 
 {include file="public/footer"}

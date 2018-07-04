@@ -34,12 +34,15 @@ class Fllzinfo extends BaseHome {
                     // ->where('shares.status',1)
                     ->where('aid',session('user.id'))->paginate(10);
             // dump($shares_list);exit();
+            $page = $shares_list->render();
             $this->assign([
                 'login_status'=>1,
                 'agent_name'=>session('user.agent_name'),
-                'shares_list'=>$shares_list
+                'shares_list'=>$shares_list,
+                'page'=>$page,
+                'total'=>$shares_list->count()
             ]);
-
+            // dump($shares_list->count());exit();
             return $this->fetch();
         }else{
             $this->assign([
