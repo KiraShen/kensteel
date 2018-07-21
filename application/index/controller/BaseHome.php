@@ -20,6 +20,11 @@ class BaseHome extends Controller
         ->where('status',1)
         ->field('id,title,url,status,controller_name')
         ->select();
+
+        $nav_list_en=Db::name('cms_ma_nav')
+        ->where('status',1)
+        ->field('id,title,url,status,controller_name')
+        ->select();
         // $link_list=Db::name('cms_link')->where('status',1)->select();//友情链接
        
         $web_icp=Db::name('system_config')
@@ -46,6 +51,7 @@ class BaseHome extends Controller
             'web_company'=>$web_company,
             'web_url'=>$web_url,
             'nav_list'=>$nav_list,
+            'nav_list_en'=>$nav_list_en,
             // 'link_list'=>$link_list,
             'controller_name'=>Request::instance()->controller(),
             'action_name'=>Request::instance()->action()

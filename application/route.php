@@ -60,10 +60,18 @@ Route::get('case-<type>','index/cases/index',[],['type'=>'\d+']);//案例
 
 
 Route::rule('login','index/login/index');
+Route::rule('loginen','index/loginen/index');
 Route::rule('login_post','index/login/login');
+Route::rule('login_posten','index/loginen/login');
 Route::rule('logout','index/login/logout');
+Route::rule('logouten','index/loginen/logout');
+Route::rule('index_en','index/indexen/index');
 Route::rule('franchisee','index/franchisee/index');
+Route::rule('holder','index/holder/index');
+Route::rule('equity','index/equity/index');
 Route::rule('info_post','index/franchisee/info_post');
+Route::rule('holder_post','index/holder/info_post');
+Route::rule('equity_post','index/equity/info_post');
 Route::rule('fllzinfo','index/fllzinfo/index');
 Route::rule('logout','index/login/logout');
 Route::rule('joinus','index/joinus/index');//加入我们

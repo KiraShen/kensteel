@@ -1,0 +1,71 @@
+<form class="layui-form layui-box" style='padding:25px 30px 20px 0' action="__SELF__" data-auto="true" method="post">
+
+    
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">agent area</label>
+        <div class="layui-input-block">
+            <input type="text" name="area" value='{$vo.area|default=""}' required="required" title="agent area" placeholder="area" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">agent name</label>
+        <div class="layui-input-block">
+            <input type="text" name="agent_name" value='{$vo.agent_name|default=""}' required="required" title="agent name" placeholder="agent name" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+     <label class="layui-form-label">person</label>
+        <div class="layui-input-block">
+            <input type="text" name="person" value='{$vo.person|default=""}' required="required" title="person" placeholder="person" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">phone</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone" value='{$vo.phone|default=""}' required="number" title="phone" placeholder="phone" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">email</label>
+        <div class="layui-input-block">
+            <input type="text" name="email" value='{$vo.email|default=""}' required="required" title="email" placeholder="person" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">login name</label>
+        <div class="layui-input-block">
+            <input type="text" name="agentname" value='{$vo.agentname|default=""}' required="required" title="login name" placeholder="login name" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">password</label>
+        <div class="layui-input-block">
+            <input type="text" name="password" value='{$vo.password|default=""}' required="required" title="password" placeholder="login password" class="layui-input">
+        </div>
+    </div>
+<!-- 
+    <div class="layui-form-item" style="display: none;">
+        <label class="layui-form-label">模式</label>
+        <div class="layui-input-block">
+            <input type="text" name="mode" value='2' required="number" title="" placeholder="" class="layui-input">
+        </div>
+    </div> -->
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <button class="layui-btn" type='submit'>SAVE</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="is it sure to cancel it?" data-close>CANCEL</button>
+    </div>
+
+
+</form>

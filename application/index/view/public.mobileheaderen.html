@@ -23,21 +23,21 @@
                       </ul>
                   </li>
 
-                {volist name="nav_list" id="nav" }
+                {volist name="nav_list_en" id="nav" }
                   <li><a href="{$nav.url}" title="{$nav.title}">{$nav.title}</a></li>
                 {/volist}
                   
                 {if $login_status eq 0 }
-                <li class=""><a href="{$web_url.0.value}/login.html" class="" >登录</a></li>
+                <li class=""><a href="{$web_url.0.value}/loginen.html" class="" >login</a></li>
                 {/if}
                 
                 {if $login_status eq 1 }
-                <li class="" style="color: black">当前登录:<span style="color: red">{$agent_name|default="无"}</span></li>
-                <li class=""><a href="{$web_url.0.value}/logout.html" class="" >退出</a></li>
+                <li class=""><a href="{$web_url.0.value}/logouten.html" class="" >logout</a></li>
+                <li class=""><a style="color: red">Login Name:{$agent_name|default="none"}</a></li>
                 {/if}
-                  
-                  
-                  <!-- <li class=""><a href="html/register.html" class="" >注册</a></li> -->
+                
+                
+                <!-- <li class=""><a href="html/register.html" class="" >注册</a></li> -->
 
               </ul>
 

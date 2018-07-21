@@ -1,0 +1,54 @@
+<form class="layui-form layui-box" style='padding:25px 30px 20px 0' action="__SELF__" data-auto="true" method="post">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">type name</label>
+        <div class="layui-input-block">
+            <input type="text" name="type_name" value='{$vo.type_name|default=""}' required="required" title="type name" placeholder="type name" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+     <label class="layui-form-label">USD</label>
+        <div class="layui-input-block">
+            <input type="text" name="money_usd" value='{$vo.money_usd|default=""}' required="number" title="money" placeholder="USD" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">cost</label>
+        <div class="layui-input-block">
+            <input type="text" name="cost_usd" value='{$vo.cost_usd|default=""}' required="number" title="cost" placeholder="cost of share unit" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">unit</label>
+        <div class="layui-input-block">
+            <input type="text" name="shares" value='{$vo.shares|default=""}' required="number" title="acount" placeholder="unit" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">value</label>
+        <div class="layui-input-block">
+            <input type="text" name="value" value='{$vo.value|default=""}' required="number" title="value" placeholder="shares value" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">package</label>
+        <div class="layui-input-block">
+            <input type="text" name="package" value='{$vo.package|default=""}' required="required" title="package" placeholder="package" class="layui-input">
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <button class="layui-btn" type='submit'>SAVE</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="is it sure to cancel it?" data-close>CANCEL</button>
+    </div>
+
+
+</form>

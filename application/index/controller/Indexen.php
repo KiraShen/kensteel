@@ -6,7 +6,7 @@ use think\Controller;
 use think\Db;
 use think\Paginator;
 
-class Index extends BaseHome {
+class Indexen extends BaseHome {
 
     /**
      * 网站入口
@@ -14,11 +14,11 @@ class Index extends BaseHome {
 
 
     public function index() {
-        
-        if (($agentid = session('user.id'))) {
+
+        if (($agentid = session('iuser.id'))) {
             $this->assign([
                 'login_status'=>1,
-                'agent_name'=>session('user.agent_name')
+                'agent_name'=>session('iuser.agent_name')
             ]);
         }else{
             $this->assign([

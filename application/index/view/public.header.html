@@ -17,7 +17,7 @@
     <!--===========layout-header================-->
     <div class="layout-header am-hide-sm-only">
       <!--topbar start-->
-<!--       <div class="topbar">
+      <div class="topbar">
         <div class="container">
           <div class="am-g">
             <div class="am-u-md-3">
@@ -26,31 +26,37 @@
                 <div class="am-dropdown" data-am-dropdown>
                   <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>Language <span class="am-icon-caret-down"></span></button>
                   <ul class="am-dropdown-content">
-                    <li><a href="#">English</a></li>
+                    <li><a href="{$web_url.0.value}/index_en.html">English</a></li>
                     <li class="am-divider"></li>
-                    <li><a href="#">Chinese</a></li>
+                    <li><a href="{$web_url.0.value}/index.html">Chinese</a></li>
                   </ul>
                 </div>
               </div>
             </div>
             <div class="am-u-md-9">
               <div class="topbar-right am-text-right am-fr">
-                Follow us
-                <i class="am-icon-facebook"></i>
+                {if $login_status eq 1 }
+                <span style="color: black">{$agent_name|default="error"}&nbsp;&nbsp;</span>
+                <a href="{$web_url.0.value}/logout.html" >登出</a>  
+                {/if}
+                <!-- <i class="am-icon-facebook"></i>
                 <i class="am-icon-twitter"></i>
                 <i class="am-icon-google-plus"></i>
                 <i class="am-icon-pinterest"></i>
                 <i class="am-icon-instagram"></i>
                 <i class="am-icon-linkedin"></i>
                 <i class="am-icon-youtube-play"></i>
-                <i class="am-icon-rss"></i>
-                <a href="html/login.html">登录</a>
-                <a href="html/register.html">注册</a>
+                <i class="am-icon-rss"></i> -->
+
+                {if $login_status eq 0 }
+                <a href="{$web_url.0.value}/login.html" >登录</a>
+                {/if}
+                <!-- <a href="html/register.html">注册</a> -->
               </div>
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
       <!--topbar end-->
 
 
@@ -89,22 +95,9 @@
                                             </div>
                                         </div>
                     </div>
-                    <span style="color: black">当前登录：</span>
-                      <span style="color: red">{$agent_name|default="无"}&nbsp;&nbsp;</span>
-                      {if $login_status eq 1 }
-                    <a href="{$web_url.0.value}/logout.html" class="contact-btn">
-                      <!-- <button type="button" class="am-btn am-btn-secondary am-radius"> -->
-                      退出
-                      <!-- </button> -->
-                    </a>
-                      {/if}
-                      {if $login_status eq 0 }
-                    <a href="{$web_url.0.value}/login.html" class="contact-btn">
-                      <!-- <button type="button" class="am-btn am-btn-secondary am-radius"> -->
-                      登录
-                      <!-- </button> -->
-                    </a>
-                      {/if}
+
+                 
+
                   </div>
                 </div>
               </div>

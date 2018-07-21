@@ -1,0 +1,92 @@
+<form class="layui-form layui-box" style='padding:25px 40px 20px 0' action="__SELF__" data-auto="true" method="">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">agent</label>
+        <div class="layui-input-block">
+            <input type="text" name="agent_name" value='{$vo.agent_name|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">type</label>
+        <div class="layui-input-block">
+            <input type="text" name="type_name" value='{$vo.type_name|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">name</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" value='{$vo.name|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+        <div class="layui-form-item">
+     <label class="layui-form-label">total</label>
+        <div class="layui-input-block">
+            <input type="text" name="money" value='{$vo.money_usd|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">count</label>
+        <div class="layui-input-block">
+            <input type="text" name="shares" value='{$vo.shares|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">personID</label>
+        <div class="layui-input-block">
+            <input type="text" name="code" value='{$vo.code|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">address</label>
+        <div class="layui-input-block">
+            <input type="text" name="address" value='{$vo.address|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">bank info</label>
+        <div class="layui-input-block">
+            <input type="text" name="bankinfo" value='{$vo.bankinfo|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">bank num</label>
+        <div class="layui-input-block">
+            <input type="text" name="banknum" value='{$vo.banknum|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <label class="layui-form-label">account mark</label>
+        <div class="layui-input-block">
+            <input type="text" name="remark" value='{$vo.remark|default=""}' required="required" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="display: none;">
+        <label class="layui-form-label">status</label>
+        <div class="layui-input-block">  
+            <input type="text" name="status" value='{$vo.status|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="display: none;">
+        <label class="layui-form-label">verify</label>
+        <div class="layui-input-block">  
+            <input type="text" name="infomark" value='{$vo.infomark|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <button class="layui-btn" type='submit'>VERIFY</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="Do you want to cancel it？" data-close>CANCEL</button>
+    </div>
+
+
+</form>

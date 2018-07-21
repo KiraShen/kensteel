@@ -9,24 +9,29 @@
 
 namespace app\api\controller;
 
+use app\api\model\User as Users;
 use controller\BasicApi;
-use service\DataService;
-use service\NodeService;
-use service\ToolsService;
 use think\Db;
-use think\View;
+use think\Request;
 
-/**
- * 后台入口
- * Class Index
- * @package app\admin\controller
- * @author jonny <980218641@qq.com>
- * @date 2017/02/15 10:41
- */
+
 class Index extends BasicApi {
 
+	public $table = 'cms_user';
 	public function index() {
-        
+        $list = Db::name($this->table)->where('id',31)->select();
+        return json($list);
+    }
+
+    public function add(){
+    	$user = new Users;
+
+    }
+
+    public function read($id=''){
+
+    	$user = Users::get(31);
+    	return json($user);
     }
 
 }

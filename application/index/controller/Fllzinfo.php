@@ -29,8 +29,8 @@ class Fllzinfo extends BaseHome {
                         user.first_name,user.last_name,user.phone,
                         user.bankinfo,user.banknum,user.code,user.address,
                         type.type_name,type.shares,type.money')
+                    ->order('status asc')
                     ->order('create_time desc')
-                    ->order('status desc')
                     // ->where('shares.status',1)
                     ->where('aid',session('user.id'))->paginate(10);
             // dump($shares_list);exit();

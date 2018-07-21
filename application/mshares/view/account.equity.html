@@ -1,0 +1,79 @@
+{extend name='extra@admin/content'}
+
+{block name="button"}
+<div class="nowrap pull-right" style="margin-top:10px">
+   <!--  <a href='{:url("$classuri/out")}' data-title="添加分类" class='layui-btn layui-btn-small layui-btn-normal'>
+    <i class='glyphicon glyphicon-share-alt'></i> 导出数据
+    </a>
+    <button data-modal='{:url("$classuri/add_user")}' data-title="添加分类" class='layui-btn layui-btn-small'>
+    <i class='fa fa-plus'></i> 添加会员
+    </button> -->
+    <!-- <button data-update data-field='delete' data-action='{:url("$classuri/del_cate")}' class='layui-btn layui-btn-small layui-btn-danger'><i class='fa fa-remove'></i> 删除分类
+    </button> -->
+</div>
+{/block}
+
+{block name="content"}
+
+<form onsubmit="return false;" data-auto="" method="POST">
+    <input type="hidden" value="resort" name="action"/>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class='list-table-check-td'>
+                <input data-none-auto="" data-check-target='.list-check-box' type='checkbox'/>
+            </th>
+            <th width="10px">No.</th>
+            <th>name</th>
+            <th>personID</th>
+            <th>agent</th>
+            <th>type</th>
+            <th>usd</th>
+            <th>time</th>
+            <!-- <th>mark</th> -->
+            <th class='text-center'  style="display: none;">status</th>
+            <th class='text-center'>operating</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='list-table-check-td'>
+                <input class="list-check-box" value='{$vo.id}' type='checkbox'/>
+            </td>
+            <td>{$key+1}</td>
+            <td>{$vo.name|default=""}</td>
+            <td>{$vo.code|default=""}</td>
+            <td>{$vo.agent_name|default=""}</td>
+            <td>{$vo.type_name|default=""}</td>
+            <td>{$vo.money_usd|default=""}</td>
+            <td>{$vo.create_time}</td>
+            <!-- <td>{$vo.remark|default=""}</td> -->
+            <td class='text-center'  style="display: none;">
+                {if $vo.status eq 0}
+                <span>禁用</span>
+                {elseif $vo.status eq 1}
+                <span style="color:#090">通过</span>
+                {elseif $vo.status eq 2}
+                <span style="color:#FF0000">待验证</span>
+                {/if}
+            </td>
+            <td class='text-center nowrap'>
+                {if auth("$classuri/edit_cate")}
+                <span class="text-explode">|</span>
+                <a data-modal='{:url("$classuri/check_equity")}?id={$vo.id}' href="javascript:void(0)">validate</a>
+                {/if}
+
+                {if auth("$classuri/del_cate")}<!-- 
+                <span class="text-explode">|</span>
+                <a data-update="{$vo.id}" data-field='del' data-action='{:url("$classuri/del_cate")}'
+                   href="javascript:void(0)">删除</a> -->
+                {/if}
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    {if isset($page)}<p>{$page}</p>{/if}
+</form>
+{/block}

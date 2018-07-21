@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kensteel V1.0</title>
+
+  <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/1.0.1/js/amazeui.min.js" />
+  <link rel="stylesheet" href="__KUI__/css/amazeui.css" />
+  <link rel="stylesheet" href="__KUI__/css/common.min.css" />
+  <link rel="stylesheet" href="__KUI__/css/index.min.css" />
+  <link rel="stylesheet" href="__KUI__/css/contact.min.css" />
+</head>
+<body>
+  <div class="layout">
+    <!--===========layout-header================-->
+    <div class="layout-header am-hide-sm-only">
+      <!--topbar start-->
+      <div class="topbar">
+        <div class="container">
+          <div class="am-g">
+            <div class="am-u-md-3">
+              <div class="topbar-left">
+                <i class="am-icon-globe"></i>
+                <div class="am-dropdown" data-am-dropdown>
+                  <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>Language <span class="am-icon-caret-down"></span></button>
+                  <ul class="am-dropdown-content">
+                    <li><a href="{$web_url.0.value}/index_en.html">English</a></li>
+                    <li class="am-divider"></li>
+                    <li><a href="{$web_url.0.value}/index.html">Chinese</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="am-u-md-9">
+              <div class="topbar-right am-text-right am-fr">
+                {if $login_status eq 1 }
+                <span style="color: black">{$agent_name|default="error"}&nbsp;&nbsp;</span>
+                <a href="{$web_url.0.value}/logouten.html" >logout</a>  
+                {/if}
+                <!-- <i class="am-icon-facebook"></i>
+                <i class="am-icon-twitter"></i>
+                <i class="am-icon-google-plus"></i>
+                <i class="am-icon-pinterest"></i>
+                <i class="am-icon-instagram"></i>
+                <i class="am-icon-linkedin"></i>
+                <i class="am-icon-youtube-play"></i>
+                <i class="am-icon-rss"></i> -->
+
+                {if $login_status eq 0 }
+                <a href="{$web_url.0.value}/loginen.html" >login</a>
+                {/if}
+                <!-- <a href="html/register.html">注册</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--topbar end-->
+
+
+      <div class="header-box" data-am-sticky>
+        <!--header start-->
+          <div class="container">
+            <div class="header">
+              <div class="am-g">
+                <div class="am-u-lg-2 am-u-sm-12">
+                  <div class="logo">
+                    <a href=""><img src="__KUI__/images/flogo.png" alt="" style="width: 250px; " /></a>
+                  </div>
+                </div>
+                <div class="am-u-md-10">
+                  <div class="header-right am-fr">
+                    <div class="header-contact">
+                      <!-- <div class="header_contacts--item">
+                                            <div class="contact_mini">
+                                                <i style="color:#7c6aa6" class="contact-icon am-icon-phone"></i>
+                                                <strong>0 (855) 233-5385</strong>
+                                                <span>周一~周五, 8:00 - 20:00</span>
+                                            </div>
+                                        </div> -->
+                      <div class="header_contacts--item">
+                                            <div class="contact_mini">
+                                                <i style="color:#7c6aa6" class="contact-icon am-icon-envelope-o"></i>
+                                                <!-- <strong>{$web_email.0.value}</strong> -->
+                                                <strong>fllz@fllz.com</strong>
+                                                <span>Welcome your letter at any time.</span>
+                                            </div>
+                                        </div>
+                      <div class="header_contacts--item">
+                                            <div class="contact_mini">
+                                                <i style="color:#7c6aa6" class="contact-icon am-icon-map-marker"></i><!-- 
+                                                <strong>{$web_company.0.value}</strong>
+                                                <span>{$web_address.0.value}</span> -->
+                                                <strong>FELLAZO CORP. Operation Center</strong>
+                                                <span>Malaysia</span>
+                                            </div>
+                                        </div>
+                    </div>
+
+                 
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--header end-->
