@@ -20,10 +20,20 @@ class Holder extends BaseHome {
             // $mode = $agentid = session('user.mode');
             // dump($mode);exit();
             $type_list= Db::name('cms_ma_holdertype')->where('status',1)->select(); 
+            $referee_list= Db::name('cms_ma_referee')
+                    ->alias('referee')
+                    ->join(['cms_ma_refereetype'=>'type'],'referee.rtid=type.id')
+                    ->field('referee.*,
+                        type.grade')
+                    // ->field(date('Y-m-d','create_at'))
+                    ->where('referee.status',1)
+                    ->where('raid',session('iuser.id'))->select(); 
             $this->assign([
                 'login_status'=>1,
                 'agent_name'=>session('iuser.agent_name'),
-                'type_list'=>$type_list
+                'type_list'=>$type_list,
+                'agent_id'=>session('iuser.id'),
+                'referee_list'=>$referee_list
             ]);       
             return $this->fetch();
         }else{
@@ -39,6 +49,7 @@ class Holder extends BaseHome {
     public function info_post(Request $request){
     	// var $result = 0;
         $tid = $request->param('tid');
+        $rid = $request->param('rid');
         $name = $request->param('name');
         $email = $request->param('email');
 		$code = $request->param('code');
@@ -62,6 +73,7 @@ class Holder extends BaseHome {
 			$result = Db::table('cms_ma_shares')
 				->insert(['pid' => $pid,
 						  'tid' => $tid,
+                          'rid' => $rid,
                           'aid' => $agentid,
 						  'status' => 2,
                           'mode' => 0,
@@ -93,6 +105,7 @@ class Holder extends BaseHome {
 				$result = Db::table('cms_ma_shares')
 				->insert(['pid' => $pid,
 						  'tid' => $tid,
+                          'rid' => $rid,
                           'aid' => $agentid,
 						  'status' => 2,
                           'mode' => 0,
@@ -137,6 +150,10 @@ class Holder extends BaseHome {
         }
         shuffle($randArr);
         return implode('', $randArr);
+    }
+
+    public function info(){
+        echo "string";
     }
 
 

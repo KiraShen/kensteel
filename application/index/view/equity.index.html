@@ -38,9 +38,10 @@
                   <!-- <h3 class="contact-form_title">请写下你的加盟信息：</h3> -->
                   <form action="{$web_url.0.value}/equity_post" class="am-form" id="doc-vld-msg" method="POST">
                     <fieldset>
-                    <legend>Please write down your affiliate information:</legend>
+                    <legend>Please write down your client information:</legend>
                     <div class="am-g">
-                      <div class="am-u-md-3">
+                      <div class="am-u-md-6">
+                        <p style="margin: 0">please choose equity type:</p>
                         <div class="am-form-group" style="background: #fcfcfc;">
                           <select id="doc-select-1" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;" required name="tid">
 
@@ -51,13 +52,28 @@
                           <span class="am-form-caret"></span>
                         </div>
                       </div>
-                      <div class="am-u-md-3">
+                      <div class="am-u-md-6">
+                        <p style="margin: 0">please choose referee:</p>
+                        <div class="am-form-group" style="background: #fcfcfc;">
+                          <select id="doc-select-1" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;" required name="rid">
+                                <option value="0">0level:{$agent_name}</option>
+                            {volist name="referee_list" id="type" }
+                                <option value="{$type.id}">{$type.grade}level:{$type.rname}</option>
+                            {/volist}
+                          </select>
+                          <span class="am-form-caret"></span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="am-g">
+                      <div class="am-u-md-4">
                         <input type="text" class="" id="doc-ipt-last" placeholder="name" name="name" required >
                       </div>
-                      <div class="am-u-md-3">
+                      <div class="am-u-md-4">
                         <input type="text" class="" id="doc-ipt-first" placeholder="email" name="email" required>
                       </div>
-                      <div class="am-u-md-3">
+                      <div class="am-u-md-4">
                         <input type="text" class="" id="doc-ipt-phone" placeholder="mobile" name="phone"  required>
                       </div>
                     </div>

@@ -20,11 +20,22 @@ class Equity extends BaseHome {
             // $mode = $agentid = session('user.mode');
             // dump($mode);exit();
             $type_list= Db::name('cms_ma_equitytype')->where('status',1)->select(); 
+            $referee_list= Db::name('cms_ma_referee')
+                    ->alias('referee')
+                    ->join(['cms_ma_refereetype'=>'type'],'referee.rtid=type.id')
+                    ->field('referee.*,
+                        type.grade')
+                    // ->field(date('Y-m-d','create_at'))
+                    ->where('referee.status',1)
+                    ->where('raid',session('iuser.id'))->select(); 
             $this->assign([
                 'login_status'=>1,
                 'agent_name'=>session('iuser.agent_name'),
-                'type_list'=>$type_list
+                'agent_id'=>session('iuser.id'),
+                'type_list'=>$type_list,
+                'referee_list'=>$referee_list
             ]);       
+            // dump($referee_list);exit();
             return $this->fetch();
         }else{
             $this->assign([
@@ -39,6 +50,7 @@ class Equity extends BaseHome {
     public function info_post(Request $request){
     	// var $result = 0;
         $tid = $request->param('tid');
+        $rid = $request->param('rid');
         $name = $request->param('name');
         $email = $request->param('email');
 		$code = $request->param('code');
@@ -54,7 +66,7 @@ class Equity extends BaseHome {
         $user = Db::name('cms_ma_user')->where('code',$code)->field('id')->order('id', 'desc')->select();
         $create_at = strtotime('now');
         $create_time = date('Y-m-d H:i:s',$create_at);
-         // dump($create_time);exit();
+         // dump($rid);exit();
         $agentid = session('iuser.id');
         // $mode = session('user.mode');
 		if(count($user)>0) {	 
@@ -62,6 +74,7 @@ class Equity extends BaseHome {
 			$result = Db::table('cms_ma_equity')
 				->insert(['pid' => $pid,
 						  'tid' => $tid,
+                          'rid' => $rid,
                           'aid' => $agentid,
 						  'status' => 2,
                           'mode' => 0,
@@ -69,9 +82,9 @@ class Equity extends BaseHome {
 						  'create_at' => $create_at,
                           'create_time' => $create_time]);
 			if ($result !== false) {
-                $this->success('Congratulations, increase success!', '@holder');
+                $this->success('Congratulations, increase success!', '@equity');
             }else{
-                $this->error('Information has failed to increase! Please check what you have filled out!', '@holder');
+                $this->error('Information has failed to increase! Please check what you have filled out!', '@equity');
             }
 		}else{
 			echo "There is a new user increase.";
@@ -93,6 +106,7 @@ class Equity extends BaseHome {
 				$result = Db::table('cms_ma_equity')
 				->insert(['pid' => $pid,
 						  'tid' => $tid,
+                          'rid' => $rid,
                           'aid' => $agentid,
 						  'status' => 2,
                           'mode' => 0,
@@ -100,12 +114,12 @@ class Equity extends BaseHome {
 						  'create_at' => $create_at,
                           'create_time' => $create_time]);
                 if ($result !== false) {
-                    $this->success('Congratulations, increase success!', '@holder');
+                    $this->success('Congratulations, increase success!', '@equity');
                 }else{
-                    $this->error('Information has failed to increase! Please check what you have filled out!', '@holder');
+                    $this->error('Information has failed to increase! Please check what you have filled out!', '@equity');
                 }
             }else{
-                $this->error('Information has failed to increase! Please check what you have filled out!', '@holder');
+                $this->error('Information has failed to increase! Please check what you have filled out!', '@equity');
             }
         	
         }

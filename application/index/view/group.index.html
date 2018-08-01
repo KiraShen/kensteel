@@ -22,9 +22,9 @@
     <div class="section">
       <div class="container">
         <div class="section--header" style="margin: -50px">
-					<h2 class="section--title">FELLAZO CORP SHARE HOLDER</h2>
+					<h2 class="section--title">AGENT GROUP</h2>
 					<p class="section--description">
-            subscribe to the original shares.
+            5 first level person & 25 second level person.
 					</p>
 				</div>
 
@@ -36,29 +36,31 @@
               <div class="am-u-md-12">
                 <div class="contact-form">
                   <!-- <h3 class="contact-form_title">请写下你的加盟信息：</h3> -->
-                  <form action="{$web_url.0.value}/holder_post" class="am-form" id="doc-vld-msg" method="POST">
+                  <form action="{$web_url.0.value}/referee_post" class="am-form" id="doc-vld-msg" method="POST">
                     <fieldset>
-                    <legend>Please write down your client information:</legend>
+                    <legend>Please write down your referee information:</legend>
                     <div class="am-g">
                       <div class="am-u-md-6">
-                        <p style="margin: 0">please choose holder type:</p>
+                        <p style="margin: 0">please choose referee level:</p>
                         <div class="am-form-group" style="background: #fcfcfc;">
-                          <select id="doc-select-1" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;" required name="tid">
+                          <select id="doc-select-1" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;" required name="rtid">
 
                             {volist name="type_list" id="type" }
-                                <option value="{$type.id}">{$type.type_name}</option>
+                                <option value="{$type.id}">{$type.rtype_name}</option>
                             {/volist}
                           </select>
                           <span class="am-form-caret"></span>
                         </div>
                       </div>
+
                       <div class="am-u-md-6">
-                        <p style="margin: 0">please choose referee:</p>
+                        <p style="margin: 0">if it's second level,please choose superior:</p>
                         <div class="am-form-group" style="background: #fcfcfc;">
-                          <select id="doc-select-1" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;" required name="rid">
-                                <option value="0">0level:{$agent_name}</option>
-                            {volist name="referee_list" id="type" }
-                                <option value="{$type.id}">{$type.grade}level:{$type.rname}</option>
+                          <select id="doc-select-1" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;" required name="rrid">
+                                <option value="0">NULL</option>
+                                <option value="0">&nbsp;&nbsp;&nbsp;&nbsp;optional superior:</option>
+                            {volist name="referee_list" id="type" key="k"}
+                                <option value="{$type.id}">{$k}-{$type.rname}</option>
                             {/volist}
                           </select>
                           <span class="am-form-caret"></span>
@@ -67,31 +69,31 @@
                     </div>
                     <div class="am-g">
                       <div class="am-u-md-4">
-                        <input type="text" class="" id="doc-ipt-last" placeholder="name" name="name" required >
+                        <input type="text" class="" id="doc-ipt-last" placeholder="name" name="rname" required >
                       </div>
                       <div class="am-u-md-4">
-                        <input type="text" class="" id="doc-ipt-first" placeholder="email" name="email" required>
+                        <input type="text" class="" id="doc-ipt-first" placeholder="email" name="remail" required>
                       </div>
                       <div class="am-u-md-4">
-                        <input type="text" class="" id="doc-ipt-phone" placeholder="mobile" name="phone"  required>
+                        <input type="text" class="" id="doc-ipt-phone" placeholder="mobile" name="rphone"  required>
                       </div>
                     </div>
 
                     <div class="am-g">
                       <div class="am-u-md-6">
-                        <input type="text" class="" id="doc-ipt-identy" placeholder="person ID" name="code"  required >
+                        <input type="text" class="" id="doc-ipt-identy" placeholder="person ID" name="rcode"  required >
                       </div>
                       <div class="am-u-md-6">
-                        <input type="text" class="" id="doc-ipt-address" placeholder="person address" name="address" required>
+                        <input type="text" class="" id="doc-ipt-address" placeholder="person address" name="raddress" required>
                       </div>
                     </div>
                     
                     <div class="am-g">
                       <div class="am-u-md-6">
-                        <input type="number" class="" id="doc-ipt-banknum" placeholder="bank number" name="banknum" required>
+                        <input type="number" class="" id="doc-ipt-banknum" placeholder="bank number" name="rbanknum" required>
                       </div>
                       <div class="am-u-md-6">
-                        <input type="text" class="" id="doc-ipt-bankinfo" placeholder="bank infomation" name="bankinfo" required>
+                        <input type="text" class="" id="doc-ipt-bankinfo" placeholder="bank infomation" name="rbankinfo" required>
                       </div>
                     </div>
 

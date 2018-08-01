@@ -1,0 +1,68 @@
+{include file="public/headeren"}
+{include file="public/naven"}
+{include file="public/mobileheaderen"}
+
+<h2>{$agent_name} all agent infomation</h2>
+<table class="am-table  am-table-bordered">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Grade</th>
+            <!-- <th>套餐类别</th> -->
+            <th>name</th>
+            <th>person ID</th>
+            <th>email</th>
+            <th>address</th>
+            <th>bank</th>
+            <th>bankinfo</th>
+            <th>time</th>
+            <th>status</th>
+            <!-- <th>操作</th> -->
+        </tr>
+    </thead>
+    <tbody>
+    	{foreach $referee_list as $key=>$vo}
+        <tr>
+        	<td>{$key+1}</td>
+            {if $vo.rtid eq 11}
+            <td style="color: red">first</td>
+            {/if}
+            {if $vo.rtid eq 12}
+            <td style="color: blue">second</td>
+            {/if}
+            <td>{$vo.rname}</td>
+            <td>{$vo.rcode}</td>
+        	<td>{$vo.remail}</td>
+        	<td>{$vo.raddress}</td>
+        	<td>{$vo.rbanknum}</td>
+        	<td>{$vo.rbankinfo}</td>
+            <td>{$vo.create_at}</td>
+            {if $vo.status eq 1}
+        	<td style="color: green">使用中</td>
+            {/if}
+            {if $vo.status eq 2}
+            <td style="color: red">待验证</td>
+            {/if}
+            <!-- {if $vo.status eq 1}
+            <td><a style="color: orange" href="">修改</a>|<a style="color: blue" href="">查看</a></td>
+            {/if}
+            {if $vo.status eq 2}
+            <td style="color: black">无法操作</td>
+            {/if} -->
+        </tr>
+        {/foreach}
+    </tbody>
+
+</table>
+
+<style>
+.pagination{text-align:center;margin-top:20px;margin-bottom: 20px;}  
+.pagination li{margin:0px 10px; border:1px solid #e6e6e6;padding: 3px 8px;display: inline-block;}  
+.pagination .active{background-color: #46A3FF;color: #fff;}  
+.pagination .disabled{color:#aaa;} 
+</style>
+
+{if isset($page)}<p>{$page}</p>{/if}
+
+
+{include file="public/footer"}

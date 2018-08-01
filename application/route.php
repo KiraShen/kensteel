@@ -73,6 +73,11 @@ Route::rule('info_post','index/franchisee/info_post');
 Route::rule('holder_post','index/holder/info_post');
 Route::rule('equity_post','index/equity/info_post');
 Route::rule('fllzinfo','index/fllzinfo/index');
+Route::rule('holder_info','index/holderinfo/index');
+Route::rule('equity_info','index/equityinfo/index');
+Route::rule('group','index/group/index');
+Route::rule('group_info','index/groupinfo/index');
+Route::rule('referee_post','index/group/info_post');
 Route::rule('logout','index/login/logout');
 Route::rule('joinus','index/joinus/index');//加入我们
 Route::rule('news','index/article/index');//新闻资讯

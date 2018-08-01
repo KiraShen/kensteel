@@ -23,10 +23,10 @@ class BaseHome extends Controller
 
         $nav_list_en=Db::name('cms_ma_nav')
         ->where('status',1)
-        ->field('id,title,url,status,controller_name')
+        ->field('id,title,url,status,pid')
         ->select();
         // $link_list=Db::name('cms_link')->where('status',1)->select();//友情链接
-       
+        
         $web_icp=Db::name('system_config')
         ->where('name','web_site_icp')
         ->select();
@@ -42,7 +42,7 @@ class BaseHome extends Controller
         $web_url=Db::name('system_config')
         ->where('name','company_url')
         ->select();
-        // dump($web_node);exit;
+        // dump($nav_list_en);exit;
         
         $this->assign([
             'web_icp'=>$web_icp,

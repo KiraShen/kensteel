@@ -208,4 +208,66 @@ CREATE TABLE `cms_ma_equity` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='回酬表';
 
+--------------------------------
+-- INSERT INTO `cms_ma_nav` (`id`, `title`, `controller_name`, `action_name`, `pid`, `url`, `sort`, `create_at`, `status`) VALUES
+-- (104, 'Apply', 'Holder_apply', 'index', 102, 'http://127.0.0.1/holder_apply.html', NULL, 1529397076, 1),
+-- (105, 'Info', 'Holder_info', 'index', 102, 'http://127.0.0.1/holder_info.html', NULL, 1529397076, 1),
+-- (106, 'Apply', 'Equity_apply', 'index', 103, 'http://127.0.0.1/equity_apply.html', NULL, 1529397076, 1),
+-- (107, 'Info', 'Equity_info', 'index', 104, 'http://127.0.0.1/equity_info.html', NULL, 1529397076, 1);
 
+
+DROP TABLE IF EXISTS `cms_ma_refereetype`;
+CREATE TABLE `cms_ma_refereetype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `rtype_name` varchar(32) NOT NULL COMMENT '分类名称',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT '用户状态;0:禁用,1:正常,2:未验证',
+  `grade` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '0:顶级 1:一级 2:二级',
+  `max` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '最大承载量 顶级:0 一级:5 二级:25',  
+  `rebate` DECIMAL(3,2) NOT NULL DEFAULT '0.00' COMMENT '回扣 顶级:0.30 一级:0.26 二级:0.20',
+  `create_at` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_at` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='推荐人类型表';
+INSERT INTO `cms_ma_refereetype` VALUES ('10','0', 'General Level Agent', '0','0','0', '0.3','1528782400','0');
+INSERT INTO `cms_ma_refereetype` VALUES ('11','0', 'Frist Level Agent', '1','1','5', '0.26','1528782400','0');
+INSERT INTO `cms_ma_refereetype` VALUES ('12','0', 'Second Level Agent', '1','2','25', '0.2','1528782400','0');
+
+
+
+DROP TABLE IF EXISTS `cms_ma_referee`;
+CREATE TABLE `cms_ma_referee` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `rtid` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `rrid` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `raid` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT '用户状态;0:禁用,1:正常,2:未验证',
+  `create_at` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_at` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `rusername` varchar(50) NOT NULL UNIQUE COMMENT '用户登录名',
+  `rpassword` char(32) NOT NULL DEFAULT '' COMMENT '用户登录密码',
+  `rname` varchar(255) NOT NULL DEFAULT '' COMMENT '姓名',
+  `rrname` varchar(255) NOT NULL DEFAULT '' COMMENT '上级姓名',
+  `rcode` varchar(30) NOT NULL DEFAULT '' UNIQUE COMMENT  '身份证',
+  `raddress` varchar(255) NOT NULL DEFAULT '' COMMENT '地址',
+  `rphone` varchar(20) NOT NULL DEFAULT '' COMMENT '手机',
+  `remail` varchar(30) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `rurl` varchar(50) NOT NULL DEFAULT '' COMMENT '网址',
+  `rremark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
+  `rbanknum` varchar(30) NOT NULL DEFAULT '' COMMENT '银行账户',
+  `rbankinfo` varchar(255) NOT NULL DEFAULT '' COMMENT '银行信息',
+  `rmode` tinyint(4) DEFAULT '0' COMMENT '0:无模式,1:乐点,2:肯始优',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='推荐人表';
+INSERT INTO `cms_ma_referee` (`id`, `rtid`,`rrid`, `raid`, `status`, `create_at`, `update_at`, `rusername`, `rpassword`, `rname`,`rrname`, `rcode`, `raddress`, `rphone`, `remail`, `rurl`, `rremark`, `rbanknum`, `rbankinfo`, `rmode`) VALUES
+(0, 10, 0, 0, 0, 1533010548, 0, 'self', '', 'self','self','', '', '', '', '', '', '', '', 0 );
+
+-- alter table cms_ma_referee add `rrname` varchar(55) NOT NULL DEFAULT '' COMMENT '上级姓名';
+alter table cms_ma_agent add `abanknum` varchar(30) NOT NULL DEFAULT '' COMMENT '银行账户';
+alter table cms_ma_agent add `abankinfo` varchar(255) NOT NULL DEFAULT '' COMMENT '银行信息';
+
+alter table cms_ma_equity add `rid` int(10) UNSIGNED NOT NULL DEFAULT '0';
+alter table cms_ma_equity add `paied` tinyint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '状态;0:未支付,1:支付';
+
+alter table cms_ma_shares add `rid` int(10) UNSIGNED NOT NULL DEFAULT '0';
+alter table cms_ma_shares add `paied` tinyint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '状态;0:未支付,1:支付';

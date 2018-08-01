@@ -19,6 +19,7 @@ class Member extends BasicAdmin
 {
     public $agent_table = 'cms_ma_agent';
     public $user_table = 'cms_user';
+    public $referee_table = 'cms_ma_referee';
     
     public function agent(){
         // 设置页面标题
@@ -91,5 +92,58 @@ class Member extends BasicAdmin
         }
         // 实例化并显示
         return parent::_list($db);
+    }
+
+        public function referee(){
+        // 设置页面标题
+        $this->title = 'REFEREE INFOMATION';
+        // 获取到所有GET参数
+        $get = $this->request->get();
+        
+        // 实例Query对象
+        // $db = Db::name($this->referee_table);
+
+        $db=Db::name($this->referee_table)
+                    ->alias('referee')
+                    ->join(['cms_ma_refereetype'=>'type'],'referee.rtid=type.id')
+                    ->join(['cms_ma_agent'=>'agent'],'referee.raid=agent.id')
+                    ->field('referee.*,
+                        type.grade,
+                        agent.agent_name,agent.person')
+                    // ->field(date('Y-m-d','create_at'))
+                    ->order('agent_name desc')
+                    ->order('grade asc')
+                    ->where('referee.status',1)
+                    ->where('referee.rmode',0);
+               // dump($db);exit();
+        foreach ([ 'rrname','rname'] as $key) {
+            if (isset($get[$key]) && $get[$key] !== '') {
+                // dump($get[$key]);exit();
+                $db->where($key, 'like', "%{$get[$key]}%");
+            }
+        }
+
+        // 实例化并显示
+        return parent::_list($db);
+    }
+
+        /**
+     * 禁用
+     */
+    public function referee_forbid() {
+        if (DataService::update($this->referee_table)) {
+            $this->success("forbid successful！", '');
+        }
+        $this->error("forbid defeat，please check it！");
+    }
+
+    /**
+     * 禁用
+     */
+    public function referee_resume() {
+        if (DataService::update($this->referee_table)) {
+            $this->success("resume successful！", '');
+        }
+        $this->error("resume defeat，please check it！");
     }
 }

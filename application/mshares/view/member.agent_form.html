@@ -17,7 +17,7 @@
     </div>
     
     <div class="layui-form-item">
-     <label class="layui-form-label">person</label>
+     <label class="layui-form-label">agent holder</label>
         <div class="layui-input-block">
             <input type="text" name="person" value='{$vo.person|default=""}' required="required" title="person" placeholder="person" class="layui-input">
         </div>
@@ -33,10 +33,23 @@
     <div class="layui-form-item">
      <label class="layui-form-label">email</label>
         <div class="layui-input-block">
-            <input type="text" name="email" value='{$vo.email|default=""}' required="required" title="email" placeholder="person" class="layui-input">
+            <input type="text" name="email" value='{$vo.email|default=""}' required="required" title="email" placeholder="email" class="layui-input">
         </div>
     </div>
 
+    <div class="layui-form-item">
+     <label class="layui-form-label">bank</label>
+        <div class="layui-input-block">
+            <input type="text" name="abanknum" value='{$vo.abanknum|default=""}' required="number" title="bank" placeholder="bank" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">bankinfo</label>
+        <div class="layui-input-block">
+            <input type="text" name="abankinfo" value='{$vo.abankinfo|default=""}' required="required" title="bankinfo" placeholder="bankinfo" class="layui-input">
+        </div>
+    </div>
 
     <div class="layui-form-item">
      <label class="layui-form-label">login name</label>
