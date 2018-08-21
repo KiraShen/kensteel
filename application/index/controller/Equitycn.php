@@ -9,7 +9,7 @@ use think\Paginator;
 use think\Request;
 
 
-class Holder extends BaseHome {
+class Equitycn extends BaseHome {
     /**
      * 网站入口
      */
@@ -18,7 +18,8 @@ class Holder extends BaseHome {
         $type_list=[];//Db::name('cms_shares_cate')->where('status',1)->select(); 
         if (($agentid = session('iuser.id'))) {
             // $mode = $agentid = session('user.mode');
-            $type_list= Db::name('cms_ma_holdertype')->where('status',1)->select(); 
+            // dump($mode);exit();
+            $type_list= Db::name('cms_ma_equitytype')->where('status',1)->select(); 
             $first_list= Db::name('cms_ma_agent')
                     ->where('status',1)
                     ->where('pid',session('iuser.id'))
@@ -33,11 +34,12 @@ class Holder extends BaseHome {
             $this->assign([
                 'login_status'=>1,
                 'agent_name'=>session('iuser.agent_name'),
-                'type_list'=>$type_list,
                 'agent_id'=>session('iuser.id'),
+                'type_list'=>$type_list,
                 'first_list'=>$first_list,
                 'second_list'=>$second_list
             ]);       
+            // dump($referee_list);exit();
             return $this->fetch();
         }else{
             $this->assign([
@@ -45,7 +47,7 @@ class Holder extends BaseHome {
                 'type_list'=>$type_list
             ]);
 
-            return $this->error('please login!','@index_en');
+            return $this->error('please login!','@index_cn');
         }
     }
 
@@ -65,16 +67,16 @@ class Holder extends BaseHome {
         $username = $this->usernameRand();
         $password = md5($username);
         $uuid = $this->uuidRand();
-        // dump($name);exit();
+        // dump($uuid);exit();
         $user = Db::name('cms_ma_user')->where('code',$code)->field('id')->order('id', 'desc')->select();
         $create_at = strtotime('now');
         $create_time = date('Y-m-d H:i:s',$create_at);
-         // dump($create_time);exit();
+         // dump($rid);exit();
         $agentid = session('iuser.id');
         // $mode = session('user.mode');
 		if(count($user)>0) {	 
 			$pid = $user[0]['id'];
-			$result = Db::table('cms_ma_shares')
+			$result = Db::table('cms_ma_equity')
 				->insert(['pid' => $pid,
 						  'tid' => $tid,
                           'rid' => $rid,
@@ -85,9 +87,9 @@ class Holder extends BaseHome {
 						  'create_at' => $create_at,
                           'create_time' => $create_time]);
 			if ($result !== false) {
-                $this->success('Congratulations, increase success!', '@holder_info');
+                $this->success('Congratulations, increase success!', '@equity_infocn');
             }else{
-                $this->error('Information has failed to increase! Please check what you have filled out!', '@holder');
+                $this->error('Information has failed to increase! Please check what you have filled out!', '@equity');
             }
 		}else{
 			echo "There is a new user increase.";
@@ -96,8 +98,8 @@ class Holder extends BaseHome {
     					  'email' => $email,
     					  'code' => $code,
     					  'address' => $address,
-    					  'bankaccount' => $bankaccount,
-    					  'bankname' => $bankname,
+                          'bankaccount' => $bankaccount,
+                          'bankname' => $bankname,
                           'bankaddress' => $bankaddress,
     					  'phone' => $phone,
                           'username' => $username,
@@ -107,7 +109,7 @@ class Holder extends BaseHome {
     					  'status' => 1]);
 			$pid = Db::table('cms_ma_user')->getLastInsID();
 			if ($user_result !== false) {
-				$result = Db::table('cms_ma_shares')
+				$result = Db::table('cms_ma_equity')
 				->insert(['pid' => $pid,
 						  'tid' => $tid,
                           'rid' => $rid,
@@ -118,12 +120,12 @@ class Holder extends BaseHome {
 						  'create_at' => $create_at,
                           'create_time' => $create_time]);
                 if ($result !== false) {
-                    $this->success('Congratulations, increase success!', '@holder_info');
+                    $this->success('Congratulations, increase success!', '@equity_infocn');
                 }else{
-                    $this->error('Information has failed to increase! Please check what you have filled out!', '@holder');
+                    $this->error('Information has failed to increase! Please check what you have filled out!', '@equitycn');
                 }
             }else{
-                $this->error('Information has failed to increase! Please check what you have filled out!', '@holder');
+                $this->error('Information has failed to increase! Please check what you have filled out!', '@equitycn');
             }
         	
         }
@@ -155,10 +157,6 @@ class Holder extends BaseHome {
         }
         shuffle($randArr);
         return implode('', $randArr);
-    }
-
-    public function info(){
-        echo "string";
     }
 
 

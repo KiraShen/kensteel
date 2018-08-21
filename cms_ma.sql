@@ -263,11 +263,32 @@ INSERT INTO `cms_ma_referee` (`id`, `rtid`,`rrid`, `raid`, `status`, `create_at`
 (0, 10, 0, 0, 0, 1533010548, 0, 'self', '', 'self','self','', '', '', '', '', '', '', '', 0 );
 
 -- alter table cms_ma_referee add `rrname` varchar(55) NOT NULL DEFAULT '' COMMENT '上级姓名';
-alter table cms_ma_agent add `abanknum` varchar(30) NOT NULL DEFAULT '' COMMENT '银行账户';
-alter table cms_ma_agent add `abankinfo` varchar(255) NOT NULL DEFAULT '' COMMENT '银行信息';
+-- alter table cms_ma_agent add `abanknum` varchar(30) NOT NULL DEFAULT '' COMMENT '银行账户';
+-- alter table cms_ma_agent add `abankinfo` varchar(255) NOT NULL DEFAULT '' COMMENT '银行信息';
 
 alter table cms_ma_equity add `rid` int(10) UNSIGNED NOT NULL DEFAULT '0';
 alter table cms_ma_equity add `paied` tinyint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '状态;0:未支付,1:支付';
 
 alter table cms_ma_shares add `rid` int(10) UNSIGNED NOT NULL DEFAULT '0';
 alter table cms_ma_shares add `paied` tinyint(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '状态;0:未支付,1:支付';
+
+
+------2018.8.15
+alter table cms_ma_agent add `abankaccount` varchar(64) NOT NULL DEFAULT '' COMMENT '银行账户';
+alter table cms_ma_agent add `abankname` varchar(255) NOT NULL DEFAULT '' COMMENT '银行名称';
+alter table cms_ma_agent add `abankaddress` varchar(128) NOT NULL DEFAULT '' COMMENT '银行地址or代号';
+alter table cms_ma_agent add `rid` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '推荐人类型';
+
+
+alter table cms_ma_user add `bankaccount` varchar(64) NOT NULL DEFAULT '' COMMENT '银行账户';
+alter table cms_ma_user add `bankname` varchar(255) NOT NULL DEFAULT '' COMMENT '银行名称';
+alter table cms_ma_user add `bankaddress` varchar(128) NOT NULL DEFAULT '' COMMENT '银行地址or代号';
+
+-- alter table cms_ma_nav add `controller_namecn` varchar(64) DEFAULT NULL COMMENT '控制器名称';
+alter table cms_ma_nav add `urlcn` varchar(50) NOT NULL DEFAULT '' COMMENT '网址';
+alter table cms_ma_nav add `titlecn` varchar(64) NOT NULL DEFAULT '' COMMENT '导航名称';
+
+
+
+
+

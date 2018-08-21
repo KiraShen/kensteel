@@ -23,7 +23,7 @@ class BaseHome extends Controller
 
         $nav_list_en=Db::name('cms_ma_nav')
         ->where('status',1)
-        ->field('id,title,url,status,pid')
+        ->field('id,title,url,status,titlecn,urlcn')
         ->select();
         // $link_list=Db::name('cms_link')->where('status',1)->select();//友情链接
         

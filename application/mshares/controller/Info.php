@@ -38,12 +38,11 @@ class Info extends BasicAdmin
                     ->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
                     ->join(['cms_ma_holdertype'=>'type'],'shares.tid=type.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
-                    ->field('shares.*,
-                        user.name,user.email,user.phone,
-                        user.bankinfo,user.banknum,user.code,user.address,
-                        type.type_name,type.shares,type.money_usd,
-                        agent.agent_name,agent.person')
-                    ->order('create_at desc')
+                    ->field('shares.id,shares.create_time,shares.update_time,shares.status,shares.remark,
+                        user.name,user.code,
+                        type.type_name,
+                        agent.agent_name')
+                    ->order('id desc')
                     ->where("shares.remark <> ''")
                     ->where('shares.status',2)
                     ->where('shares.mode',0)
@@ -114,12 +113,11 @@ public function everify(){
                     ->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
                     ->join(['cms_ma_equitytype'=>'type'],'shares.tid=type.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
-                    ->field('shares.*,
-                        user.name,user.email,user.phone,
-                        user.bankinfo,user.banknum,user.code,user.address,
-                        type.type_name,type.shares,type.money_usd,
-                        agent.agent_name,agent.person')
-                    ->order('create_at desc')
+                    ->field('shares.id,shares.create_time,shares.update_time,shares.status,shares.remark,
+                        user.name,user.code,
+                        type.type_name,
+                        agent.agent_name')
+                    ->order('id desc')
                     ->where("shares.remark <> ''")
                     ->where('shares.status',2)
                     ->where('shares.mode',0)

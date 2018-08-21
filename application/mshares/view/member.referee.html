@@ -5,9 +5,9 @@
     <!-- <a href='{:url("$classuri/out")}' data-title="添加分类" class='layui-btn layui-btn-small layui-btn-normal'>
     <i class='glyphicon glyphicon-share-alt'></i> 导出数据
     </a> -->
-    <button data-modal='{:url("$classuri/add_agent")}' data-title="ADD AGENT" class='layui-btn layui-btn-small'>
+    <!-- <button data-modal='{:url("$classuri/add_agent")}' data-title="ADD AGENT" class='layui-btn layui-btn-small'>
     <i class='fa fa-plus'></i> add agent
-    </button>
+    </button> -->
     <!-- button data-update data-field='delete' data-action='{:url("$classuri/del_cate")}' class='layui-btn layui-btn-small layui-btn-danger'><i class='fa fa-remove'></i> 删除分类
     </button> -->
 </div>
@@ -37,8 +37,8 @@
         </div>
     </div>
 </form>
-
-<form onsubmit="return false;" data-auto="" method="POST">
+<h1>waiting update...</h1>
+<!-- <form onsubmit="return false;" data-auto="" method="POST">
     <input type="hidden" value="resort" name="action"/>
     <table class="table table-hover">
         <thead>
@@ -76,8 +76,6 @@
             {/if}
             <td>{$vo.rbanknum|default=""}</td>
             <td>{$vo.rbankinfo|default=""}</td>
-            <!-- <td>{$vo.agentname|default=""}</td> -->
-            <!-- <td>{$vo.password|default=""}</td> -->
             <td class='text-center'>
                 {if $vo.status eq 0}
                 <span>forbidden</span>
@@ -86,10 +84,6 @@
                 {/if}
             </td>
             <td class='text-center nowrap'>
-               <!--  {if auth("$classuri/edit_agent")}
-                <span class="text-explode">|</span>
-                <a data-modal='{:url("$classuri/edit_agent")}?id={$vo.id}' href="javascript:void(0)">edit</a>
-                {/if} -->
 
                 {if $vo.status eq 1 and auth("$classuri/referee_forbid")}
                 <span class="text-explode">|</span>
@@ -98,11 +92,6 @@
                 <span class="text-explode">|</span>
                 <a data-update="{$vo.id}" data-field='status' data-value='1' data-action='{:url("$classuri/referee_resume")}' href="javascript:void(0)">resume</a>
                 {/if}
-                <!-- {if auth("$classuri/del_cate")}
-                <span class="text-explode">|</span>
-                <a data-update="{$vo.id}" data-field='del' data-action='{:url("$classuri/del_cate")}'
-                   href="javascript:void(0)">删除</a>
-                {/if} -->
             </td>
 
         </tr>
@@ -110,5 +99,5 @@
         </tbody>
     </table>
     {if isset($page)}<p>{$page}</p>{/if}
-</form>
+</form> -->
 {/block}

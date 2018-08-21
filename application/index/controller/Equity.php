@@ -20,20 +20,24 @@ class Equity extends BaseHome {
             // $mode = $agentid = session('user.mode');
             // dump($mode);exit();
             $type_list= Db::name('cms_ma_equitytype')->where('status',1)->select(); 
-            $referee_list= Db::name('cms_ma_referee')
-                    ->alias('referee')
-                    ->join(['cms_ma_refereetype'=>'type'],'referee.rtid=type.id')
-                    ->field('referee.*,
-                        type.grade')
-                    // ->field(date('Y-m-d','create_at'))
-                    ->where('referee.status',1)
-                    ->where('raid',session('iuser.id'))->select(); 
+            $first_list= Db::name('cms_ma_agent')
+                    ->where('status',1)
+                    ->where('pid',session('iuser.id'))
+                    ->select(); 
+            $second_id = array_column($first_list, 'id');
+            foreach ($second_id as $key => $value) {
+                $second_list[$key] = Db::name('cms_ma_agent')
+                                ->where('status',1)
+                                ->where('pid',$second_id[$key])
+                                ->select();
+            }
             $this->assign([
                 'login_status'=>1,
                 'agent_name'=>session('iuser.agent_name'),
                 'agent_id'=>session('iuser.id'),
                 'type_list'=>$type_list,
-                'referee_list'=>$referee_list
+                'first_list'=>$first_list,
+                'second_list'=>$second_list
             ]);       
             // dump($referee_list);exit();
             return $this->fetch();
@@ -55,8 +59,9 @@ class Equity extends BaseHome {
         $email = $request->param('email');
 		$code = $request->param('code');
         $address = $request->param('address');
-        $banknum = $request->param('banknum');
-        $bankinfo =  $request->param('bankinfo');
+        $bankaccount = $request->param('bankaccount');
+        $bankname =  $request->param('bankname');
+        $bankaddress =  $request->param('bankaddress');
         $phone = $request->param('phone');
         // $password = md5(substr($code, 12,6));
         $username = $this->usernameRand();
@@ -82,7 +87,7 @@ class Equity extends BaseHome {
 						  'create_at' => $create_at,
                           'create_time' => $create_time]);
 			if ($result !== false) {
-                $this->success('Congratulations, increase success!', '@equity');
+                $this->success('Congratulations, increase success!', '@equity_info');
             }else{
                 $this->error('Information has failed to increase! Please check what you have filled out!', '@equity');
             }
@@ -93,8 +98,9 @@ class Equity extends BaseHome {
     					  'email' => $email,
     					  'code' => $code,
     					  'address' => $address,
-    					  'banknum' => $banknum,
-    					  'bankinfo' => $bankinfo,
+                          'bankaccount' => $bankaccount,
+                          'bankname' => $bankname,
+                          'bankaddress' => $bankaddress,
     					  'phone' => $phone,
                           'username' => $username,
     					  'password' => $password,
@@ -114,7 +120,7 @@ class Equity extends BaseHome {
 						  'create_at' => $create_at,
                           'create_time' => $create_time]);
                 if ($result !== false) {
-                    $this->success('Congratulations, increase success!', '@equity');
+                    $this->success('Congratulations, increase success!', '@equity_info');
                 }else{
                     $this->error('Information has failed to increase! Please check what you have filled out!', '@equity');
                 }

@@ -9,7 +9,7 @@ use think\Paginator;
 use think\Request;
 
 
-class Groupinfo extends BaseHome {
+class Groupinfocn extends BaseHome {
 	public function index(){
 		$agentid = session('iuser.id');
 	    // dump($agentid);exit();
@@ -47,7 +47,7 @@ class Groupinfo extends BaseHome {
 	                // 'type_list'=>$type_list
 	            ]);
 
-	        return $this->error('please login!','@index_en');
+	        return $this->error('please login!','@index_cn');
 		}
 
 	}

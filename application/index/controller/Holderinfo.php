@@ -22,17 +22,17 @@ class Holderinfo extends BaseHome {
 			                        user.name,user.email,user.phone,
 			                        user.bankinfo,user.banknum,user.code,user.address,
 			                        type.type_name,type.shares,type.money_usd')
-	                        ->where('shares.status',1)
+	                        //->where('shares.status',1)
 	                        ->where('aid',session('iuser.id'))
-	                        // ->where('rtid',11)
-	                        ->select(); 
-
+	                        ->paginate(10);
+	        $page = $list->render();
 	        // dump($list);exit();
 			$this->assign([
 	            'login_status'=>1,
 	            'agent_name'=>session('iuser.agent_name'),
 	            // 'type_list'=>$type_list,
-	            'list'=>$list
+	            'list'=>$list,
+	            'page'=>$page
 	        ]); 
 	        return $this->fetch();
 		}else{

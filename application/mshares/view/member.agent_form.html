@@ -38,16 +38,23 @@
     </div>
 
     <div class="layui-form-item">
-     <label class="layui-form-label">bank</label>
+     <label class="layui-form-label">bank account</label>
         <div class="layui-input-block">
-            <input type="text" name="abanknum" value='{$vo.abanknum|default=""}' required="number" title="bank" placeholder="bank" class="layui-input">
+            <input type="text" name="abankaccount" value='{$vo.abankaccount|default=""}' required="number" title="bank" placeholder="bank" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
-     <label class="layui-form-label">bankinfo</label>
+     <label class="layui-form-label">bank name</label>
         <div class="layui-input-block">
-            <input type="text" name="abankinfo" value='{$vo.abankinfo|default=""}' required="required" title="bankinfo" placeholder="bankinfo" class="layui-input">
+            <input type="text" name="abankname" value='{$vo.abankname|default=""}' required="required" title="bankinfo" placeholder="bankinfo" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+     <label class="layui-form-label">bank address/switch code</label>
+        <div class="layui-input-block">
+            <input type="text" name="abankaddress" value='{$vo.abankaddress|default=""}' required="required" title="bankinfo" placeholder="bankinfo" class="layui-input">
         </div>
     </div>
 

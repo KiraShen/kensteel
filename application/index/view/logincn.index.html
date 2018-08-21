@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="__KUI__/css/amazeui.css" />
+  <link rel="stylesheet" href="__KUI__/css/other.min.css" />
+</head>
+<body class="login-container">
+  <div class="login-box">
+    <div class="logo-img">
+      <img src="__KUI__/images/flogin.png" alt="" />
+    </div>
+    <form action="{$web_url.0.value}/login_postcn" class="am-form" data-am-validator method="POST">
+
+      <!-- <div class="am-form-group">
+        <label for="doc-vld-name-2"><i class="am-icon-user"></i></label>
+        <select type="text" required placeholder="选择类型" style="float: right;"></select>
+      </div>  -->                 
+      <div class="am-form-group">
+        <label for="doc-vld-name-2"><i class="am-icon-user"></i></label>
+        <input name="username" type="text" id="doc-vld-name-2" placeholder="用戶名" required/>
+      </div>
+
+      <div class="am-form-group">
+        <label for="doc-vld-email-2"><i class="am-icon-key"></i></label>
+        <input name="password" type="password" id="doc-vld-email-2" placeholder="密碼" required/>
+      </div>
+
+      <button class="am-btn am-btn-secondary"  type="submit">登錄</button>
+    </form>
+  </div>
+</body>
+</html>

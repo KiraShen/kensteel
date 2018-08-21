@@ -9,7 +9,7 @@ use think\Paginator;
 use think\Request;
 
 
-class Holder extends BaseHome {
+class Holdercn extends BaseHome {
     /**
      * 网站入口
      */
@@ -45,7 +45,7 @@ class Holder extends BaseHome {
                 'type_list'=>$type_list
             ]);
 
-            return $this->error('please login!','@index_en');
+            return $this->error('please login!','@index_cn');
         }
     }
 
@@ -85,9 +85,9 @@ class Holder extends BaseHome {
 						  'create_at' => $create_at,
                           'create_time' => $create_time]);
 			if ($result !== false) {
-                $this->success('Congratulations, increase success!', '@holder_info');
+                $this->success('Congratulations, increase success!', '@holder_infocn');
             }else{
-                $this->error('Information has failed to increase! Please check what you have filled out!', '@holder');
+                $this->error('Information has failed to increase! Please check what you have filled out!', '@holdercn');
             }
 		}else{
 			echo "There is a new user increase.";
@@ -118,12 +118,12 @@ class Holder extends BaseHome {
 						  'create_at' => $create_at,
                           'create_time' => $create_time]);
                 if ($result !== false) {
-                    $this->success('Congratulations, increase success!', '@holder_info');
+                    $this->success('Congratulations, increase success!', '@holder_infocn');
                 }else{
-                    $this->error('Information has failed to increase! Please check what you have filled out!', '@holder');
+                    $this->error('Information has failed to increase! Please check what you have filled out!', '@holdercn');
                 }
             }else{
-                $this->error('Information has failed to increase! Please check what you have filled out!', '@holder');
+                $this->error('Information has failed to increase! Please check what you have filled out!', '@holdercn');
             }
         	
         }

@@ -1,17 +1,17 @@
-{include file="public/headeren"}
-{include file="public/naven"}
+{include file="public/headercn"}
+{include file="public/navcn"}
 {include file="public/mobileheaderen"}
 
 
   <div class="section">
       <div class="container">
         <div class="section--header" style="margin: -50px">
-          <h2 class="section--title">{$agent_name} - agent list</h2>
+          <h2 class="section--title">{$agent_name} - 代理成員列表</h2>
           <!-- <p class="section--description">
             subscribe to the original shares.
           </p> -->
           <div style="text-align: center;">
-            <a href="http://127.0.0.1/group.html" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus">REGISTER AGENT</span></a></div>       
+            <a href="http://127.0.0.1/groupcn.html" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus">註冊代理成員</span></a></div>       
             </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
   <div class="am-panel am-panel-default">
     <div class="am-panel-hd">
       <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-{$key+1}'}">
-        <div>agent:&nbsp;<a href="#">{$vo.agent_name}</a>&nbsp;&nbsp;email:&nbsp;{$vo.email}</div>
+        <div>一級成員:&nbsp;<a href="#">{$vo.agent_name}</a>&nbsp;&nbsp;郵箱:&nbsp;{$vo.email}</div>
       </h4>
     </div>
     <div id="do-not-say-{$key+1}" class="am-panel-collapse am-collapse am-in">
@@ -34,10 +34,10 @@
                         <tbody>
                             <tr>
                                 <td>{$k+1}</td>
-                                <td>name:&nbsp;{$v.agent_name}</td>
-                                <td>email:&nbsp;{$v.email}</td>
+                                <td>二級成員:&nbsp;{$v.agent_name}</td>
+                                <td>郵箱:&nbsp;{$v.email}</td>
                                 <!-- <td>{$v.code}</td> -->
-                                <td style="color: green">Activated</td>
+                                <td style="color: green">使用中</td>
                                 <!-- <td>Coderthemes</td> -->
                             </tr>
                         </tbody>
@@ -54,4 +54,4 @@
 </div>
                    
 
-{include file="public/footeren"}
+{include file="public/footercn"}

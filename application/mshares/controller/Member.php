@@ -28,7 +28,7 @@ class Member extends BasicAdmin
         $get = $this->request->get();
         
         // 实例Query对象
-        $db = Db::name($this->agent_table);
+        $db = Db::name($this->agent_table)->where('rid',10);
 
         foreach ([ 'agent_name','person'] as $key) {
             if (isset($get[$key]) && $get[$key] !== '') {
@@ -94,7 +94,7 @@ class Member extends BasicAdmin
         return parent::_list($db);
     }
 
-        public function referee(){
+    public function referee(){
         // 设置页面标题
         $this->title = 'REFEREE INFOMATION';
         // 获取到所有GET参数
@@ -115,6 +115,8 @@ class Member extends BasicAdmin
                     ->order('grade asc')
                     ->where('referee.status',1)
                     ->where('referee.rmode',0);
+
+        // $db = Db::name($this->agent_table)->where('rid',11);
                // dump($db);exit();
         foreach ([ 'rrname','rname'] as $key) {
             if (isset($get[$key]) && $get[$key] !== '') {

@@ -35,21 +35,31 @@ class Account extends BasicAdmin
         $db = Db::name($this->shares_table);
 
         //文本轮播列表
+        // $agent = Db::name($this->shares_table)
+        //             ->alias('shares')
+        //             ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
+        //             ->field('shares.id,agent.agent_name')
+        //             ->order('id desc')
+        //             ->where('shares.status=2')
+        //             ->where('shares.mode=0')
+        //             ->where('shares.remark','')
+        //             ->select();
+                   // dump($agent);exit();
         $shares_list=Db::name($this->shares_table)
                     ->alias('shares')
                     ->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
                     ->join(['cms_ma_holdertype'=>'type'],'shares.tid=type.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
-                    ->field('shares.*,
-                        user.name,user.email,user.phone,
-                        user.bankinfo,user.banknum,user.code,user.address,
-                        type.type_name,type.shares,type.money_usd,
-                        agent.agent_name,agent.person')
-                    ->order('create_at desc')
+                    ->field('shares.status,shares.create_time,shares.id,shares.rid,
+                        user.name,user.code,
+                        type.type_name,type.money_usd,
+                        agent.agent_name')
+                    ->order('id desc')
                     ->where('shares.status=2')
                     ->where('shares.mode=0')
-                    ->where('shares.remark','')
+                    ->where('shares.remark','')//->select();
                     ->paginate(10);
+                   // dump($shares_list);exit();
         // $page = $shares_list->render();
         $page = preg_replace(['|href="(.*?)"|', '|pagination|'], ['data-open="$1" href="javascript:void(0);"', 'pagination pull-right'], $shares_list->render());
         // dump($page);exit();
@@ -90,16 +100,16 @@ class Account extends BasicAdmin
                     ->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
                     ->join(['cms_ma_equitytype'=>'type'],'shares.tid=type.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
-                    ->field('shares.*,
-                        user.name,user.email,user.phone,
-                        user.bankinfo,user.banknum,user.code,user.address,
-                        type.type_name,type.shares,type.money_usd,
-                        agent.agent_name,agent.person')
-                    ->order('create_at desc')
+                    ->field('shares.status,shares.create_time,shares.id,shares.rid,
+                        user.name,user.code,
+                        type.type_name,type.money_usd,
+                        agent.agent_name')
+                    ->order('id desc')
                     ->where('shares.status=2')
                     ->where('shares.mode=0')
-                    ->where('shares.remark','')
+                    ->where('shares.remark','')//->select();
                     ->paginate(10);
+                   // dump($shares_list);exit();
         // $page = $shares_list->render();
         $page = preg_replace(['|href="(.*?)"|', '|pagination|'], ['data-open="$1" href="javascript:void(0);"', 'pagination pull-right'], $shares_list->render());
         // dump($page);exit();
@@ -354,7 +364,7 @@ class Account extends BasicAdmin
         $info_list = Db::name($this->shares_table)->where('id',$info_id)->find();
         $agent_list = Db::name($this->agent_table)->where('id',$info_list['aid'])->find();
         $referee_list = Db::name($this->referee_table)->where('id',$info_list['rid'])->find();
-        $type_list = Db::name($this->shares_type)->where('id',$info_list['tid'])->find();
+        $type_list = Db::name($this->holder_type)->where('id',$info_list['tid'])->find();
         $info_all = array_merge($type_list,$agent_list);
         $info_all = array_merge($info_all,$referee_list);
         $info_all = array_merge($info_all,$info_list);

@@ -2,59 +2,82 @@
 {include file="public/naven"}
 {include file="public/mobileheaderen"}
 
-<h2>{$agent_name} all holder shares infomation</h2>
-<table class="am-table  am-table-bordered">
-    <thead>
-        <tr>
-            <th>No.</th>
-            <th>Type</th>
-            <!-- <th>套餐类别</th> -->
-            <th>name</th>
-            <th>person ID</th>
-            <th>email</th>
-            <th>address</th>
-            <th>time</th>
-            <th>status</th>
-            <!-- <th>操作</th> -->
-        </tr>
-    </thead>
-    <tbody>
-    	{foreach $list as $key=>$vo}
-        <tr>
-        	<td>{$key+1}</td>
-            <td style="color: red">{$vo.type_name}</td>
-            
-            <td>{$vo.name}</td>
-            <td>{$vo.code}</td>
-        	<td>{$vo.email}</td>
-        	<td>{$vo.address}</td>
-            <td>{$vo.update_time}</td>
-            {if $vo.status eq 1}
-        	<td style="color: green">pass</td>
-            {/if}
-            {if $vo.status eq 2}
-            <td style="color: red">verifying</td>
-            {/if}
-            <!-- {if $vo.status eq 1}
-            <td><a style="color: orange" href="">修改</a>|<a style="color: blue" href="">查看</a></td>
-            {/if}
-            {if $vo.status eq 2}
-            <td style="color: black">无法操作</td>
-            {/if} -->
-        </tr>
-        {/foreach}
-    </tbody>
+<div class="section">
+    <div class="container">
+        <div class="section--header" style="margin: -50px">
+            <h2 class="section--title">{$agent_name} - holder shares customer list</h2>
+            <!-- <p class="section--description">
+                subscribe to the original shares.
+            </p> -->
+            <div style="text-align: center;">
+            <a href="http://127.0.0.1/holder.html" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus">REGISTER</span></a></div>       
+            </div>
 
-</table>
+        </div>
+    </div>
+</div>
 
-<style>
-.pagination{text-align:center;margin-top:20px;margin-bottom: 20px;}  
-.pagination li{margin:0px 10px; border:1px solid #e6e6e6;padding: 3px 8px;display: inline-block;}  
-.pagination .active{background-color: #46A3FF;color: #fff;}  
-.pagination .disabled{color:#aaa;} 
-</style>
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form class="am-form">
+                <table class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                        <tr style="color: balck">
+                            <!-- <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th> -->
+                            <th class="table-id">No.</th>
+                            <th class="table-title">Type</th>
+                            <th class="table-type">Name</th>
+                            <th class="table-date am-hide-sm-only">Email</th>
+                            <th class="table-date am-hide-sm-only">Time</th>
+                            <th class="table-date am-hide-sm-only">Status</th>
+                            <!-- <th class="table-set">opreate</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach $list as $key=>$vo}
+                        <tr>
 
-{if isset($page)}<p>{$page}</p>{/if}
+                            <!-- <td><input type="checkbox"></td> -->
+                            <td>{$key+1}</td>
+                            <td style="color: red">{$vo.type_name}</td>
+                            <td>{$vo.name}</td>
+                            <td>{$vo.email}</td>
+                            <td>{$vo.update_time}</td>
+                            {if $vo.status eq 1}
+                            <td style="color: green">Activated</td>
+                            {/if}
+                            {if $vo.status eq 2}
+                            <td style="color: red">verifying</td>
+                            {/if}
+                           <!-- <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> edit</button>
+                                        <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button>
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> cancel</button>
+                                    </div>
+                                </div>
+                            </td> -->
+                        </tr>
+                        {/foreach}
+                    </tbody>
+                </table>             
+            </form>
+                <style>
+                .pagination{text-align:center;margin-top:20px;margin-bottom: 20px;}  
+                .pagination li{margin:0px 10px; border:1px solid #e6e6e6;padding: 3px 8px;display: inline-block;}  
+                .pagination .active{background-color: #46A3FF;color: #fff;}  
+                .pagination .disabled{color:#aaa;} 
+                </style>
+            <div style="float: center">
+                {if isset($page)}<p>{$page}</p>{/if}
+            </div>
+        </div>
+
+    </div>
 
 
-{include file="public/footer"}
+
+
+
+{include file="public/footeren"}

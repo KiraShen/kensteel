@@ -9,7 +9,7 @@ use think\Paginator;
 use think\Request;
 
 
-class Group extends BaseHome {
+class Groupcn extends BaseHome {
     /**
      * 网站入口
      */
@@ -38,7 +38,7 @@ class Group extends BaseHome {
                 'type_list'=>$type_list
             ]);
 
-            return $this->error('please login!','@index_en');
+            return $this->error('please login!','@index_cn');
         }
     }
 
@@ -74,14 +74,14 @@ class Group extends BaseHome {
         $agentid = session('iuser.id');
         // $mode = session('user.mode');
 		if(count($user)>0) {	 
-            $this->error('He is already an agent! Please check what you have filled out!', '@group');    
+            $this->error('He is already an agent! Please check what you have filled out!', '@groupcn');    
 		}else{
             if($rid == 11 && count($user_num) > 5){
-                $this->error('first level agent is over!', '@group'); 
+                $this->error('first level agent is over!', '@groupcn'); 
             }
             if($rid == 11){$pid = $agentid;}
         // dump($rid);exit();
-            if($rid == 12 && $pid == 0) {$this->error('please choose superior.', '@group'); }
+            if($rid == 12 && $pid == 0) {$this->error('please choose superior.', '@groupcn'); }
             // if($tid == 12){
             //     $buf = Db::name('cms_ma_referee')
             //             ->where('id',$rid)->field('rname')->select();
@@ -105,9 +105,9 @@ class Group extends BaseHome {
     					  'status' => 1]);
 			// $pid = Db::table('cms_ma_user')->getLastInsID();
             if ($user_result !== false) {
-                $this->success('Congratulations, increase success!', '@group_info');
+                $this->success('Congratulations, increase success!', '@group_infocn');
             }else{
-                $this->error('Information has failed to increase! Please check what you have filled out!', '@group');
+                $this->error('Information has failed to increase! Please check what you have filled out!', '@groupcn');
             }      
         }
     }

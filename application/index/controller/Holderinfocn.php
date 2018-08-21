@@ -9,15 +9,15 @@ use think\Paginator;
 use think\Request;
 
 
-class Equityinfo extends BaseHome {
+class Holderinfocn extends BaseHome {
 	public function index(){
 		$agentid = session('iuser.id');
 	    // dump($agentid);exit();
 		if($agentid) {
-			$list= Db::name('cms_ma_equity')
+			$list= Db::name('cms_ma_shares')
 							->alias('shares')
                     		->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
-                    		->join(['cms_ma_equitytype'=>'type'],'shares.tid=type.id')
+                    		->join(['cms_ma_holdertype'=>'type'],'shares.tid=type.id')
                     		->field('shares.*,
 			                        user.name,user.email,user.phone,
 			                        user.bankinfo,user.banknum,user.code,user.address,
@@ -26,7 +26,6 @@ class Equityinfo extends BaseHome {
 	                        ->where('aid',session('iuser.id'))
 	                        ->paginate(10);
 	        $page = $list->render();
-
 	        // dump($list);exit();
 			$this->assign([
 	            'login_status'=>1,
@@ -42,7 +41,7 @@ class Equityinfo extends BaseHome {
 	                // 'type_list'=>$type_list
 	            ]);
 
-	        return $this->error('please login!','@index_en');
+	        return $this->error('please login!','@index_cn');
 		}
 
 	}

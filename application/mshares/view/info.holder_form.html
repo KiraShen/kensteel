@@ -34,7 +34,7 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">personID</label>
+        <label class="layui-form-label">I/C Number</label>
         <div class="layui-input-block">
             <input type="text" name="code" value='{$vo.code|default=""}' readonly="true" class="layui-input">
         </div>
@@ -48,16 +48,22 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">bank info</label>
+        <label class="layui-form-label">bank account</label>
         <div class="layui-input-block">
-            <input type="text" name="bankinfo" value='{$vo.bankinfo|default=""}' readonly="true" class="layui-input">
+            <input type="text" name="bankaccount" value='{$vo.bankaccount|default=""}' readonly="true" class="layui-input">
         </div>
     </div>
     
     <div class="layui-form-item">
-        <label class="layui-form-label">bank num</label>
+        <label class="layui-form-label">bank name</label>
         <div class="layui-input-block">
-            <input type="text" name="banknum" value='{$vo.banknum|default=""}' readonly="true" class="layui-input">
+            <input type="text" name="bankname" value='{$vo.bankname|default=""}' readonly="true" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">bank address/switch code</label>
+        <div class="layui-input-block">
+            <input type="text" name="bankaddress" value='{$vo.bankaddress|default=""}' readonly="true" class="layui-input">
         </div>
     </div>
     
