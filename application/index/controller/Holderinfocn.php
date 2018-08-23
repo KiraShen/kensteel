@@ -41,7 +41,7 @@ class Holderinfocn extends BaseHome {
 	                // 'type_list'=>$type_list
 	            ]);
 
-	        return $this->error('please login!','@index_cn');
+	        return $this->error('please login!','@logincn');
 		}
 
 	}

@@ -25,13 +25,14 @@ class Groupinfo extends BaseHome {
 	        				->select();
 	        $second_id = array_column($first_list, 'id');
 	        $count = count($second_id);
+	        $second_list = array();
 	        foreach ($second_id as $key => $value) {
 	        	$second_list[$key] = Db::name('cms_ma_agent')
 	        					->where('status',1)
 	        					->where('pid',$second_id[$key])
 	        					->select();
 	        }
-	        // dump($second_list);exit();
+	        dump($second_list);exit();
 			$this->assign([
 	            'login_status'=>1,
 	            'agent_name'=>session('iuser.agent_name'),

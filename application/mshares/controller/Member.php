@@ -9,6 +9,14 @@
 namespace app\mshares\controller;
 
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
+//Load Composer's autoloader
+//require 'vendor/autoload.php';
+
+
 use controller\BasicAdmin;
 use service\DataService;
 use think\Db;
@@ -41,6 +49,40 @@ class Member extends BasicAdmin
         return parent::_list($db);
     }
 
+    public function send(){
+
+
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.163.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'fellazo@163.com';                 // SMTP username
+            $mail->Password = 'fellazo123456';                           // SMTP password
+            // $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 25;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('fellazo@163.com', 'Fellazo');
+            $mail->addAddress('sqc0823@163.com');
+            $mail->addReplyTo('sqc0823@163.com', 'Information');
+
+            //Content
+            // $mail->isHTML(true);       
+            // $mail->Subject = '标题';
+            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+
+            $mail->send();
+
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
+
+    }
+    
     public function add_agent(){
         return $this->_form('cms_ma_agent', 'agent_form');
     }

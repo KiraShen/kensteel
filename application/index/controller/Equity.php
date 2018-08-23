@@ -25,6 +25,7 @@ class Equity extends BaseHome {
                     ->where('pid',session('iuser.id'))
                     ->select(); 
             $second_id = array_column($first_list, 'id');
+            $second_list = array();
             foreach ($second_id as $key => $value) {
                 $second_list[$key] = Db::name('cms_ma_agent')
                                 ->where('status',1)

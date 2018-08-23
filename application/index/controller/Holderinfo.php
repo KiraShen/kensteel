@@ -41,7 +41,7 @@ class Holderinfo extends BaseHome {
 	                // 'type_list'=>$type_list
 	            ]);
 
-	        return $this->error('please login!','@index_en');
+	        return $this->error('please login!','@loginen');
 		}
 
 	}
