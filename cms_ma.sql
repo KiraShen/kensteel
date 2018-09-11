@@ -290,5 +290,10 @@ alter table cms_ma_nav add `titlecn` varchar(64) NOT NULL DEFAULT '' COMMENT '�
 
 
 
+-------2018.9.10
+alter table cms_ma_agent add `r_name` varchar(255) NOT NULL DEFAULT '' COMMENT '上級名称';
+
+
+
 
 

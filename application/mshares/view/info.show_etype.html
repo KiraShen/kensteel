@@ -1,0 +1,26 @@
+<form class="form" action="__SELF__" data-auto="true" method="post">
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">type</label>
+
+            <select name="type" id="selectid" lay-verify="required">
+                {foreach $vo as $k=>$v}
+                <option value="{$v.id}">{$v.type_name}</option>
+                {/foreach}
+            </select>
+
+        <input type='hidden' value="{$id}" name='id'/>
+    
+    </div>
+
+
+    <div class="layui-form-item text-center">
+        <input type='hidden' value='{$id}' name='id'/>
+        <button class="layui-btn" type='submit'>MODIFY</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="Do you want to cancel it？" data-close>CANCEL</button>
+    </div>
+
+
+
+</form>

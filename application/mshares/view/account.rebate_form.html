@@ -1,0 +1,29 @@
+<form class="layui-form layui-box" style='padding:25px 30px 20px 0' action="__SELF__" data-auto="true" method="post">
+    
+    <p style="text-align: center;">
+        一共50次支付週期，這是第{$count}次支付。<br>
+        客戶姓名:{$name}<br>
+        客戶I/C Number:{$code}<br>
+        客戶銀行信息:<br>
+        銀行帳戶:{$bankaccount}<br>
+        銀行名稱:{$bankname}<br>
+        銀行地址:{$bankaddress}
+    </p>
+
+    <div class="layui-form-item" style="display: none;">
+        <label class="layui-form-label">count</label>
+        <div class="layui-input-block">  
+            <input type="text" name="count" value={$count} readonly="true" class="layui-input">
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <button class="layui-btn" type='submit'>SUBMIT</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="Are you sure you want to cancel it？" data-close>CANCEL</button>
+    </div>
+
+
+</form>

@@ -14,12 +14,22 @@ class Groupcn extends BaseHome {
      * 网站入口
      */
     public function index() {
-    	//type
+        //type
+        $agent_type = session('iuser.rid');
+        $agent_id = session('iuser.id');
+            // dump($agent_type);exit();
         $type_list=[];//Db::name('cms_shares_cate')->where('status',1)->select(); 
         if (($agentid = session('iuser.id'))) {
             // $mode = $agentid = session('user.mode');
             // dump($mode);exit();
             $type_list= Db::name('cms_ma_refereetype')->where('status',1)->select(); 
+            // dump($type_list);exit();
+            if($agent_type == 11){
+                $type_list= Db::name('cms_ma_refereetype')
+                        ->where('status',1)
+                        ->where('id',12)
+                        ->select(); 
+            }
             $referee_list= Db::name('cms_ma_agent')
                         ->where('status',1)
                         ->where('pid',session('iuser.id'))
@@ -27,6 +37,8 @@ class Groupcn extends BaseHome {
                         ->select(); 
             $this->assign([
                 'login_status'=>1,
+                'agent_type'=>$agent_type,
+                'agent_id'=>$agent_id,
                 'agent_name'=>session('iuser.agent_name'),
                 'type_list'=>$type_list,
                 'referee_list'=>$referee_list
@@ -35,20 +47,26 @@ class Groupcn extends BaseHome {
         }else{
             $this->assign([
                 'login_status'=>0,
+                'agent_id'=>$agent_id,
+                'agent_type'=>$agent_type,
                 'type_list'=>$type_list
             ]);
-
             return $this->error('please login!','@index_cn');
         }
     }
 
     public function info_post(Request $request){
-    	// var $result = 0;
+        // var $result = 0;
         $rid = $request->param('rid');
+        // dump($rid);exit();
         $pid = $request->param('pid');
+        if($rid == 12){
+        $pid = session('iuser.id');
+        // dump($pid);exit();  
+        }
         $agent_name = $request->param('agent_name');
         $email = $request->param('email');
-		$code = $request->param('code');
+        $code = $request->param('code');
         $address = $request->param('address');
         $bankaccount = $request->param('bankaccount');
         $bankname =  $request->param('bankname');
@@ -56,8 +74,7 @@ class Groupcn extends BaseHome {
         $phone = $request->param('phone');
         // $password = md5(substr($code, 12,6));
         $username = $this->usernameRand();
-        $password = md5($username);
-        $rrname = '';
+        $password = $username;
         // $uuid = $this->uuidRand();
         // dump($agent_name);exit();
         $user = Db::name('cms_ma_agent')
@@ -70,8 +87,10 @@ class Groupcn extends BaseHome {
 
         $create_at = strtotime('now');
         // $create_time = date('Y-m-d H:i:s',$create_at);
-         // dump($create_time);exit();
         $agentid = session('iuser.id');
+        $agentpid = session('iuser.pid');
+        $rname = session('iuser.agent_name');
+         // dump($agentname);exit();
         // $mode = session('user.mode');
 		if(count($user)>0) {	 
             $this->error('He is already an agent! Please check what you have filled out!', '@groupcn');    
@@ -82,14 +101,20 @@ class Groupcn extends BaseHome {
             if($rid == 11){$pid = $agentid;}
         // dump($rid);exit();
             if($rid == 12 && $pid == 0) {$this->error('please choose superior.', '@groupcn'); }
-            // if($tid == 12){
-            //     $buf = Db::name('cms_ma_referee')
-            //             ->where('id',$rid)->field('rname')->select();
-            //     $rrname = $buf[0]['rname'];
-            // }
+            if($rid == 12){
+                $buf0 = Db::name('cms_ma_agent')
+                        ->where('id',$agentpid)->field('agent_name')->find();
+                $rname =  $buf0['agent_name'];
+                $buf = Db::name('cms_ma_agent')
+                        ->where('id',$pid)->field('agent_name')->find();
+                $rrname = $buf['agent_name'];
+                $rname = $rname.'-'.$rrname;
+                // dump($rname);exit();
+            }
 			echo "There is a new agent increase.";
 			$user_result = Db::table('cms_ma_agent')
     			->insert(['agent_name' => $agent_name, 
+                          'r_name' => $rname, 
     					  'email' => $email,
     					  'code' => $code,
                           'pid' => $pid,

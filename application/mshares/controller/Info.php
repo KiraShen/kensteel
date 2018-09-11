@@ -33,20 +33,33 @@ class Info extends BasicAdmin
         // 实例Query对象
         $db = Db::name($this->shares_table);
 
+        // $shang_list=Db::name($this->shares_table)
+        //             ->alias('shares')
+        //             ->join(['cms_ma_agent'=>'agent'],'shares.rid=agent.id')
+        //             ->field('shares.id,agent.agent_name')
+        //             ->order('id desc')
+        //             ->where('shares.status',2)
+        //             ->select();             
+        // dump($shang_list);exit();
         $shares_list=Db::name($this->shares_table)
                     ->alias('shares')
                     ->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
                     ->join(['cms_ma_holdertype'=>'type'],'shares.tid=type.id')
+                    ->join(['cms_ma_agent'=>'r'],'shares.rid=r.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
                     ->field('shares.id,shares.create_time,shares.update_time,shares.status,shares.remark,
                         user.name,user.code,
                         type.type_name,
-                        agent.agent_name')
+                        agent.agent_name,
+                        r.r_name')
                     ->order('id desc')
-                    ->where("shares.remark <> ''")
-                    ->where('shares.status',2)
-                    ->where('shares.mode',0)
+                    ->where('shares.status',3)
                     ->paginate(10);
+        // $shares_list = & $s;
+        // foreach ($shares_list as $key => &$value) {
+        //     dump($shares_list[$key]['shangji']=1);
+        // }
+        // dump($shares_list);exit();
         // $page = $shares_list->render();
         $page = preg_replace(['|href="(.*?)"|', '|pagination|'], ['data-open="$1" href="javascript:void(0);"', 'pagination pull-right'], $shares_list->render());
         // dump($page);exit();
@@ -60,6 +73,34 @@ class Info extends BasicAdmin
         // dump($shares_list);exit();
         return $this->fetch();
     }
+    public function show_htype(){
+        $info = input();
+        // dump($info);exit();
+        $info_id = $info['id'];
+        $htype_list = Db::name($this->holder_type)->select();
+        // dump($htype_list);exit();
+        if ($this->request->isPost()) {
+            $data = $this->request->post();
+            // dump($data);exit();
+
+            $nowtime = strtotime('now');
+            $update_time = date('Y-m-d H:i:s',time());
+            $result = Db::name($this->shares_table)
+                        ->where('id',$info_id)
+                        ->update(['tid' => $data["type"],
+                                  'update_at' => $nowtime,
+                                  'update_time' => $update_time]);
+        
+            if ($result !== false) {
+                $this->success('验证成功!', '');
+            }else{
+                $this->error('验证失败, 请稍候再试!');
+            }
+        
+        }
+        return $this->fetch('show_htype',['vo' => $htype_list,'id' => $info_id]);
+    }
+
     public function show_holder(){
         $info = input();
         $info_id = $info['id'];
@@ -70,8 +111,8 @@ class Info extends BasicAdmin
         $info_all = array_merge($type_list,$agent_list);
         $info_all = array_merge($info_all,$user_list);
         $info_all = array_merge($info_all,$info_list);
-        if($info_all['status'] == 2){
-            $info_all['status'] = 1;
+        if($info_all['status'] == 3){
+            $info_all['status'] = 2;
         }
         $record = session('user');
         $nowtime = strtotime('now');
@@ -86,7 +127,6 @@ class Info extends BasicAdmin
             $result = Db::name($this->shares_table)
                         ->where('id',$data['id'])
                         ->update(['status' => $data['status'],
-                                  'remark' => $data['remark'],
                                   'infomark' => $data['infomark'].$record['username'].'@'.$update_time.':validate|',
                                   'update_at' => $nowtime,
                                   'update_time' => $update_time]);
@@ -100,7 +140,8 @@ class Info extends BasicAdmin
         }
         return $this->fetch('holder_form',['vo' => $info_all]);
     }
-public function everify(){
+
+    public function everify(){
         // 设置页面标题
         $this->title = 'PRIVATE EQUITY INFOMATION VERIFY';
         // 获取到所有GET参数
@@ -112,17 +153,18 @@ public function everify(){
                     ->alias('shares')
                     ->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
                     ->join(['cms_ma_equitytype'=>'type'],'shares.tid=type.id')
+                    ->join(['cms_ma_agent'=>'r'],'shares.rid=r.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
                     ->field('shares.id,shares.create_time,shares.update_time,shares.status,shares.remark,
                         user.name,user.code,
                         type.type_name,
-                        agent.agent_name')
+                        agent.agent_name,
+                        r.r_name,r.agent_name')
                     ->order('id desc')
-                    ->where("shares.remark <> ''")
-                    ->where('shares.status',2)
-                    ->where('shares.mode',0)
+                    ->where('shares.status',3)
                     ->paginate(10);
         // $page = $shares_list->render();
+        // dump($shares_list);exit();
         $page = preg_replace(['|href="(.*?)"|', '|pagination|'], ['data-open="$1" href="javascript:void(0);"', 'pagination pull-right'], $shares_list->render());
         // dump($page);exit();
         // 实例化并显示
@@ -135,6 +177,35 @@ public function everify(){
         // dump($shares_list);exit();
         return $this->fetch();
     }
+
+    public function show_etype(){
+        $info = input();
+        // dump($info);exit();
+        $info_id = $info['id'];
+        $htype_list = Db::name($this->equity_type)->select();
+        // dump($htype_list);exit();
+        if ($this->request->isPost()) {
+            $data = $this->request->post();
+            // dump($data);exit();
+
+            $nowtime = strtotime('now');
+            $update_time = date('Y-m-d H:i:s',time());
+            $result = Db::name($this->equity_table)
+                        ->where('id',$info_id)
+                        ->update(['tid' => $data["type"],
+                                  'update_at' => $nowtime,
+                                  'update_time' => $update_time]);
+        
+            if ($result !== false) {
+                $this->success('验证成功!', '');
+            }else{
+                $this->error('验证失败, 请稍候再试!');
+            }
+        
+        }
+        return $this->fetch('show_etype',['vo' => $htype_list,'id' => $info_id]);
+    }
+
     public function show_equity(){
         $info = input();
         $info_id = $info['id'];
@@ -145,8 +216,8 @@ public function everify(){
         $info_all = array_merge($type_list,$agent_list);
         $info_all = array_merge($info_all,$user_list);
         $info_all = array_merge($info_all,$info_list);
-        if($info_all['status'] == 2){
-            $info_all['status'] = 1;
+        if($info_all['status'] == 3){
+            $info_all['status'] = 2;
         }
         $record = session('user');
         $nowtime = strtotime('now');
@@ -161,7 +232,6 @@ public function everify(){
             $result = Db::name($this->equity_table)
                         ->where('id',$data['id'])
                         ->update(['status' => $data['status'],
-                                  'remark' => $data['remark'],
                                   'infomark' => $data['infomark'].$record['username'].'@'.$update_time.':validate|',
                                   'update_at' => $nowtime,
                                   'first_at' => strtotime(date("Y-m-d"))+7*24*60*60,

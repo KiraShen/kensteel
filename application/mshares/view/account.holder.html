@@ -26,7 +26,8 @@
             <th width="10px">No.</th>
             <th>name</th>
             <th>I/C Number</th>
-            <th>agent</th>
+            <th>superior</th>
+            <th>agent(1[-2])</th>
             <th>type</th>
             <th>usd</th>
             <th>time</th>
@@ -45,6 +46,7 @@
             <td>{$vo.name|default=""}</td>
             <td>{$vo.code|default=""}</td>
             <td>{$vo.agent_name|default=""}</td>
+            <td>{$vo.r_name|default=""}</td>
             <td>{$vo.type_name|default=""}</td>
             <td>{$vo.money_usd|default=""}</td>
             <td>{$vo.create_time}</td>

@@ -40,6 +40,7 @@
                     <fieldset>
                     <legend>Please fill in your referee information:</legend>
                     <div class="am-g">
+                      {if $agent_type eq 10}
                       <div class="am-u-md-6">
                         <p style="margin: 0">please choose agent level:</p>
                         <div class="am-form-group" style="background: #fcfcfc;">
@@ -67,6 +68,36 @@
                         </div>
                       </div>
                     </div>
+                    {/if}
+
+                    {if $agent_type eq 11}
+                    <div class="am-u-md-6">
+                        <p style="margin: 0">please choose agent level:</p>
+                        <div class="am-form-group" style="background: #fcfcfc;">
+                          <select id="doc-select-type" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;" required name="rid">
+
+                                <option value="12">Second Level Agent</option>
+                            
+                          </select>
+                          <span class="am-form-caret"></span>
+                        </div>
+                      </div>
+
+                      <div class="am-u-md-6" id="second" >
+                        <p style="margin: 0">please select superior (When second level apply):</p>
+                        <div class="am-form-group" style="background: #fcfcfc;">
+                          <select id="doc-select-second" style="width: 100%;font-size: 16px;line-height: 20px;padding: 15px 20px;border-radius: 3px;color: #262626;border: 2px solid #e9e9e9;" required name="pid2"><!-- 
+                                <option value="0">N/A</option>
+                                <option value="0">&nbsp;&nbsp;&nbsp;&nbsp;optional superior:</option> -->
+                            
+                                <option value="{$agent_id}" selected="selected">{$agent_name}</option>
+                            
+                          </select>
+                          <span class="am-form-caret"></span>
+                        </div>
+                      </div>
+                    </div>
+                    {/if}
                     <div class="am-g">
                       <div class="am-u-md-4">
                         <input type="text" class="" id="doc-ipt-last" placeholder="name" name="agent_name" required >

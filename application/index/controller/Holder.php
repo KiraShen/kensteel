@@ -69,7 +69,7 @@ class Holder extends BaseHome {
         // dump($name);exit();
         $user = Db::name('cms_ma_user')->where('code',$code)->field('id')->order('id', 'desc')->select();
         $create_at = strtotime('now');
-        $create_time = date('Y-m-d H:i:s',$create_at);
+        $create_time = date('Y-m-d',$create_at);
          // dump($create_time);exit();
         $agentid = session('iuser.id');
         // $mode = session('user.mode');
@@ -80,7 +80,7 @@ class Holder extends BaseHome {
 						  'tid' => $tid,
                           'rid' => $rid,
                           'aid' => $agentid,
-						  'status' => 2,
+						  'status' => 3,
                           'mode' => 0,
                           'uuid' => $uuid,
 						  'create_at' => $create_at,
@@ -113,7 +113,7 @@ class Holder extends BaseHome {
 						  'tid' => $tid,
                           'rid' => $rid,
                           'aid' => $agentid,
-						  'status' => 2,
+						  'status' => 3,
                           'mode' => 0,
                           'uuid' => $uuid,
 						  'create_at' => $create_at,

@@ -28,7 +28,8 @@
                             <th class="table-title">類型</th>
                             <th class="table-type">客戶</th>
                             <th class="table-date am-hide-sm-only">郵箱</th>
-                            <th class="table-date am-hide-sm-only">時間</th>
+                            <th class="table-date am-hide-sm-only">創建日期</th>
+                            <th class="table-date am-hide-sm-only">更新日期</th>
                             <th class="table-date am-hide-sm-only">狀態</th>
                             <!-- <th class="table-set">opreate</th> -->
                         </tr>
@@ -42,11 +43,25 @@
                             <td style="color: red">{$vo.type_name}</td>
                             <td>{$vo.name}</td>
                             <td>{$vo.email}</td>
+                            <td>{$vo.create_time}</td>
+
+                            {if $vo.status eq 1}
                             <td>{$vo.update_time}</td>
+                            {/if}
+                            {if $vo.status eq 2}
+                            <td>{$vo.update_time}</td>
+                            {/if}
+                            {if $vo.status eq 3}
+                            <td>{$vo.create_time}</td>
+                            {/if}
+                            
                             {if $vo.status eq 1}
                             <td style="color: green">已通過</td>
                             {/if}
                             {if $vo.status eq 2}
+                            <td style="color: red">待確認</td>
+                            {/if}
+                            {if $vo.status eq 3}
                             <td style="color: red">待驗證</td>
                             {/if}
                            <!-- <td>

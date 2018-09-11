@@ -50,13 +50,14 @@ class Account extends BasicAdmin
                     ->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
                     ->join(['cms_ma_holdertype'=>'type'],'shares.tid=type.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
+                    ->join(['cms_ma_agent'=>'r'],'shares.rid=r.id')
                     ->field('shares.status,shares.create_time,shares.id,shares.rid,
                         user.name,user.code,
                         type.type_name,type.money_usd,
-                        agent.agent_name')
+                        agent.agent_name,
+                        r.r_name')
                     ->order('id desc')
                     ->where('shares.status=2')
-                    ->where('shares.mode=0')
                     ->where('shares.remark','')//->select();
                     ->paginate(10);
                    // dump($shares_list);exit();
@@ -78,7 +79,9 @@ class Account extends BasicAdmin
         $record = session('user');
         $nowtime = strtotime('now');
         $update_time = date('Y-m-d H:i:s',time());
+        $status = 1;
         $this->assign([
+           'status' => $status,
            'recordname'=>$record['username'],
            'nowtime'=>$nowtime,
            'update_time'=>$update_time
@@ -86,7 +89,7 @@ class Account extends BasicAdmin
         return $this->_form('cms_ma_shares', 'holder_form');
     }
 
-        public function equity(){
+    public function equity(){
         // 设置页面标题
         $this->title = 'PRIVATE EQUITY AUDIT ACCOUNT';
         // 获取到所有GET参数
@@ -100,13 +103,14 @@ class Account extends BasicAdmin
                     ->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
                     ->join(['cms_ma_equitytype'=>'type'],'shares.tid=type.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
+                    ->join(['cms_ma_agent'=>'r'],'shares.rid=r.id')
                     ->field('shares.status,shares.create_time,shares.id,shares.rid,
                         user.name,user.code,
                         type.type_name,type.money_usd,
-                        agent.agent_name')
+                        agent.agent_name,
+                        r.r_name')
                     ->order('id desc')
                     ->where('shares.status=2')
-                    ->where('shares.mode=0')
                     ->where('shares.remark','')//->select();
                     ->paginate(10);
                    // dump($shares_list);exit();
@@ -128,7 +132,9 @@ class Account extends BasicAdmin
         $record = session('user');
         $nowtime = strtotime('now');
         $update_time = date('Y-m-d H:i:s',time());
+        $status = 1;
         $this->assign([
+           'status' => $status,
            'recordname'=>$record['username'],
            'nowtime'=>$nowtime,
            'update_time'=>$update_time
@@ -153,35 +159,38 @@ class Account extends BasicAdmin
                     ->join(['cms_ma_equitytype'=>'type'],'shares.tid=type.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
                     ->field('shares.*,
-                        user.name,user.email,user.phone,
-                        user.bankinfo,user.banknum,user.code,user.address,
-                        type.type_name,type.shares,type.money_usd,type.roe,
-                        agent.agent_name,agent.person')
+                        user.name,user.email,user.phone,user.code,
+                        user.bankaccount,user.bankname,user.bankaddress,
+                        type.type_name,type.money_usd,type.roe,
+                        agent.agent_name')
                     // ->field(date('Y-m-d','create_at'))
                     ->order('shares.update_time desc')
                     ->where("shares.remark <> ''")
                     ->where('shares.status',1)
-                    ->where('shares.mode',0)
                     ->select();
            // dump($shares_list);exit();
+           $count = 0;
            if(is_array($shares_list)){
                 foreach($shares_list as $v=>$value){
-                    $interval = floor(ceil(strtotime($nowtime)-$value['first_at'])/86400/30);
-                    $count = $value['count']+1;
-                    $shares_list[$v]['count'] = $count;
+                    $interval = floor(ceil(strtotime($nowtime)-$value['update_at'])/86400/30);
+                    $count = $value['count'];
+                    $shares_list[$v]['frequency'] = $interval;
                     $shares_list[$v]['money_usd'] = $shares_list[$v]['money_usd']*$shares_list[$v]['roe'];
-                    $shares_list[$v]['update_time'] = substr($shares_list[$v]['update_time'] , 0 ,10);
-                    if($interval!=$count){
-                        unset($shares_list[$v]);
-                    }
+                    // $shares_list[$v]['update_time'] = substr($shares_list[$v]['update_time'] , 0 ,10);
+                    // if($interval!=$count){
+                    //     unset($shares_list[$v]);
+                    // }
                 }
             } 
-        // dump($shares_list);
-        // exit();
-        
-        !empty($this->title) && $this->assign('title', $this->title);
+           // dump($shares_list);exit();
+        if($interval>$count){
+
+        }else{
+            $shares_list = [];
+        }
         $this->assign([
            'list'=>$shares_list,
+           'count'=>$count
 
            // 'page'=>$page
         ]);
@@ -190,10 +199,22 @@ class Account extends BasicAdmin
     }
 
     public function pay() {
-        if (DataService::update($this->equity_table)) {
-            $this->success("Confirmation of payment!", '');
-        }
-        $this->error("Confirm the failure and try again later!");      
+
+        $get = $this->request->get();
+        $shares_list=Db::name($this->equity_table)->where('id',$get['id'])->find();
+        $user_list=Db::name($this->user_table)->where('id',$shares_list['pid'])->find();
+        // dump($user_list);exit();
+        $count = $shares_list['count'] + 1;
+        // dump($count);exit();
+        $this->assign([
+           'count' => $count,
+           'name' => $user_list['name'],
+           'code' => $user_list['code'],
+           'bankaccount' => $user_list['bankaccount'],
+           'bankname' => $user_list['bankname'],
+           'bankaddress' => $user_list['bankaddress']
+        ]);
+        return $this->_form('cms_ma_equity', 'rebate_form');  
     }
 
 
@@ -306,14 +327,13 @@ class Account extends BasicAdmin
                     ->join(['cms_ma_user'=>'user'],'shares.pid=user.id')
                     ->join(['cms_ma_holdertype'=>'type'],'shares.tid=type.id')
                     ->join(['cms_ma_agent'=>'agent'],'shares.aid=agent.id')
-                    ->join(['cms_ma_referee'=>'referee'],'shares.rid=referee.id')
-                    // ->join(['cms_ma_refereetype'=>'rtype'],'rtype.id=referee.id')
+                    ->join(['cms_ma_agent'=>'r'],'shares.rid=r.id')
+                    ->field('shares.rid as rrid')
                     ->field('shares.*,
-                        user.name,user.email,user.phone,
-                        user.bankinfo,user.banknum,user.code,user.address,
-                        type.type_name,type.shares,type.money_usd,type.roe,
-                        referee.rtid,referee.rname,referee.rrname,referee.rbanknum,referee.rbankinfo,
-                        agent.agent_name,agent.person')
+                        user.name,user.code,
+                        type.type_name,type.money_usd,
+                        agent.agent_name,
+                        r.r_name,r.pid,r.rid')
                     ->order('shares.update_time desc')
                     ->where("shares.remark <> ''")
                     ->where('shares.status',1)
@@ -322,19 +342,17 @@ class Account extends BasicAdmin
            // dump($shares_list);exit();
            if(is_array($shares_list)){
                 foreach($shares_list as $v=>$value){
-                    $shares_list[$v]['update_time'] = substr($shares_list[$v]['update_time'] , 0 ,10);
-                    if($shares_list[$v]['rtid'] == 10){
+                    if($shares_list[$v]['rid'] == 10){
                         $shares_list[$v]['repay'] = 0.30*strval($shares_list[$v]['money_usd']);
                         $shares_list[$v]['repay1'] = 0;
                         $shares_list[$v]['repay2'] = 0;
-                        // $shares_list[$v]['grade'] = 0;
                     }
-                    if($shares_list[$v]['rtid'] == 11){
+                    if($shares_list[$v]['rid'] == 11){
                         $shares_list[$v]['repay'] = 0.04*strval($shares_list[$v]['money_usd']);
                         $shares_list[$v]['repay1'] = 0.26*strval($shares_list[$v]['money_usd']);
                         $shares_list[$v]['repay2'] = 0;
                     }
-                    if($shares_list[$v]['rtid'] == 12){
+                    if($shares_list[$v]['rid'] == 12){
                         $shares_list[$v]['repay'] = 0.04*strval($shares_list[$v]['money_usd']);
                         $shares_list[$v]['repay1'] = 0.06*strval($shares_list[$v]['money_usd']);
                         $shares_list[$v]['repay2'] = 0.20*strval($shares_list[$v]['money_usd']);
@@ -361,28 +379,46 @@ class Account extends BasicAdmin
     public function repay_show(){
         $info = input();
         $info_id = $info['id'];
-        $info_list = Db::name($this->shares_table)->where('id',$info_id)->find();
-        $agent_list = Db::name($this->agent_table)->where('id',$info_list['aid'])->find();
-        $referee_list = Db::name($this->referee_table)->where('id',$info_list['rid'])->find();
-        $type_list = Db::name($this->holder_type)->where('id',$info_list['tid'])->find();
-        $info_all = array_merge($type_list,$agent_list);
-        $info_all = array_merge($info_all,$referee_list);
-        $info_all = array_merge($info_all,$info_list);
-        if($info_all['rtid']==10){
+        $info_all = Db::name($this->shares_table)
+                    ->alias('shares')
+                    ->join(['cms_ma_holdertype'=>'type'],'shares.tid=type.id')
+                    ->join(['cms_ma_agent'=>'agent'],'shares.rid=agent.id')
+                    ->field('shares.*,
+                        type.type_name,type.money_usd,
+                        agent.agent_name,agent.abankaccount,
+                        agent.abankname,agent.abankaddress,agent.rid,agent.pid')
+                    ->where('shares.id',$info_id)->find();
+
+        if($info_all['rid']==10){
             $info_all['repay'] = strval($info_all['money_usd'])*0.3;
             $info_all['repay1'] = 0;
             $info_all['repay2'] = 0;
         }
-        if($info_all['rtid']==11){
+        if($info_all['rid']==11){
+            $buf = Db::name($this->agent_table)->where('id',$info_all['pid'])->find();
+            $info_all['abankaccount0'] = $buf['abankaccount'];
+            $info_all['abankname0'] = $buf['abankname'];
+            $info_all['abankaddress0'] = $buf['abankaddress'];
+            $info_all['agent_name0'] = $buf['agent_name'];
+            // dump($buf);exit();
             $info_all['repay'] = strval($info_all['money_usd'])*0.04;
             $info_all['repay1'] = strval($info_all['money_usd'])*0.26;
             $info_all['repay2'] = 0;
+            // dump($info_all);exit();
         }
-        if($info_all['rtid']==12){
-            $buf = Db::name($this->referee_table)->where('id',$info_all['rrid'])->find();
-            $info_all['rrbanknum'] = $buf['rbanknum'];
-            $info_all['rrbankinfo'] = $buf['rbankinfo'];
-        // dump($buf);exit();
+        if($info_all['rid']==12){
+            $buf1 = Db::name($this->agent_table)->where('id',$info_all['pid'])->find();
+            $info_all['abankaccount1'] = $buf1['abankaccount'];
+            $info_all['abankname1'] = $buf1['abankname'];
+            $info_all['abankaddress1'] = $buf1['abankaddress'];
+            $info_all['agent_name1'] = $buf1['agent_name'];
+
+            $buf0 = Db::name($this->agent_table)->where('id',$buf1['pid'])->find();
+            $info_all['abankaccount0'] = $buf0['abankaccount'];
+            $info_all['abankname0'] = $buf0['abankname'];
+            $info_all['abankaddress0'] = $buf0['abankaddress'];
+            $info_all['agent_name0'] = $buf0['agent_name'];
+
             $info_all['repay'] = strval($info_all['money_usd'])*0.04;
             $info_all['repay1'] = strval($info_all['money_usd'])*0.06;
             $info_all['repay2'] = strval($info_all['money_usd'])*0.2;

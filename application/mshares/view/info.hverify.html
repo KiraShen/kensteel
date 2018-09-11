@@ -26,12 +26,13 @@
             <th width="10px">NO.</th>
             <th>name</th>
             <th>I/C Number</th>
-            <th>agent</th>
+            <th>superior</th>
+            <th>agent(1[-2])</th>
             <th>type</th>
             <!-- <th>USD</th> -->
-            <th>time</th>
-            <th>accounting-mark</th>
-            <th class='text-center'>status</th>
+            <th>date</th>
+            <!-- <th>accounting-mark</th> -->
+            <!-- <th class='text-center'>status</th> -->
             <th class='text-center'>operating</th>
         </tr>
         </thead>
@@ -45,11 +46,14 @@
             <td>{$vo.name|default=""}</td>
             <td>{$vo.code|default=""}</td>
             <td>{$vo.agent_name|default=""}</td>
-            <td>{$vo.type_name|default=""}</td>
+            <td>{$vo.r_name|default=""}</td>
+            <td>{$vo.type_name|default=""}
+                <a data-modal='{:url("$classuri/show_htype")}?id={$vo.id}' href="javascript:void(0)">[modify]</a>
+            </td>
             <!-- <td>{$vo.money_usd|default=""}</td> -->
-            <td>{$vo.update_time}</td>
-            <td>{$vo.remark|default=""}</td>
-            <td class='text-center'>
+            <td>{$vo.create_time}</td>
+            <!-- <td>{$vo.remark|default=""}</td> -->
+            <!-- <td class='text-center'>
                 {if $vo.status eq 0}
                 <span>fail</span>
                 {elseif $vo.status eq 1}
@@ -57,7 +61,7 @@
                 {elseif $vo.status eq 2}
                 <span style="color:#FF0000">to be verified</span>
                 {/if}
-            </td>
+            </td> -->
             <td class='text-center nowrap'>
                 {if auth("$classuri/edit_cate")}
                 <span class="text-explode">|</span>
